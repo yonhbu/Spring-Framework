@@ -4,9 +4,7 @@ package co.com.practical.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import co.com.practical.model.Employee;
-import co.com.practical.model.Person;
 import co.com.practical.repository.EmployeeRepository;
 
 
