@@ -17,9 +17,10 @@ import co.com.practical.service.EmployeeService;
 
 
 
+
 @RestController
 @RequestMapping("/api")
-public class EmployeeController {
+public class EmployeeRestController {
 
 	@Autowired
 	private EmployeeService employeeService;
