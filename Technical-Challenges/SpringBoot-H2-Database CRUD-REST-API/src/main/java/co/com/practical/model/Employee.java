@@ -34,8 +34,9 @@ public class Employee {
 	@Column (name = "salary")
 	private double salary;
 	
-	@Column (name = "position")
-	private String position; 
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "idPosition")
+	private Position position; 
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idPerson")
