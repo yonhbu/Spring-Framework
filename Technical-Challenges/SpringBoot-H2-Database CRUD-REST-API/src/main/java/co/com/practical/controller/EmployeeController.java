@@ -41,13 +41,13 @@ public class EmployeeController {
 
 	@PostMapping("/insert")
 	public ResponseEntity<Employee> insertEmployee (@RequestBody Employee employee) {
-		return new ResponseEntity<>(employeeService.insert_Employee(employee), HttpStatus.OK); 
+		return new ResponseEntity<>(employeeService.save_Employee(employee), HttpStatus.CREATED); 
 	}
 
 
-	@PutMapping("/update/{id}")
+	@PutMapping("/update")
 	public ResponseEntity<Employee> updateEmployee (@RequestBody Employee employee) {
-		return new ResponseEntity<>(employeeService.insert_Employee(employee), HttpStatus.OK); 
+		return new ResponseEntity<>(employeeService.save_Employee(employee), HttpStatus.OK); 
 	}
 
 

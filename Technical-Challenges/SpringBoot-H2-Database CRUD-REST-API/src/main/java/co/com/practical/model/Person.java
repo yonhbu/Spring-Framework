@@ -46,9 +46,7 @@ public class Person {
 	@Column (name = "cityName")
 	private String cityName; 
 	
-	@ManyToOne
-	@JoinColumn (name = "idEmployee")
-	private Employee employee;
+
 
 	
 	

@@ -25,7 +25,7 @@ public class EmployeeService {
 	}	
 	
 
-	public Employee insert_Employee (Employee employee) {
+	public Employee save_Employee (Employee employee) {
 		return employeeRepository.save(employee);
 	}
 	
