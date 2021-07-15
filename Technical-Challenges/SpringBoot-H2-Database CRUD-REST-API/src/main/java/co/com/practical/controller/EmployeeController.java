@@ -28,26 +28,26 @@ public class EmployeeController {
 
 	@GetMapping("/consult")
 	public ResponseEntity<List<Employee>> consultEmployee () {
-		return new ResponseEntity<List<Employee>>(employeeService.getConsult(), HttpStatus.OK);
+		return new ResponseEntity<>(employeeService.getConsult(), HttpStatus.OK);
 	}
 
 
 	@GetMapping("/consultId/{id}")
 	public ResponseEntity<Employee> consultxID (@PathVariable("id") Long id) {
-		return new ResponseEntity<Employee>(employeeService.getConsultId(id),HttpStatus.OK);		
+		return new ResponseEntity<>(employeeService.getConsultId(id),HttpStatus.OK);		
 
 	}
 
 
 	@PostMapping("/insert")
 	public ResponseEntity<Employee> insertEmployee (@RequestBody Employee employee) {
-		return new ResponseEntity<Employee>(employeeService.insert_Employee(employee), HttpStatus.OK); 
+		return new ResponseEntity<>(employeeService.insert_Employee(employee), HttpStatus.OK); 
 	}
 
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Employee> updateEmployee (@RequestBody Employee employee) {
-		return new ResponseEntity<Employee>(employeeService.insert_Employee(employee), HttpStatus.OK); 
+		return new ResponseEntity<>(employeeService.insert_Employee(employee), HttpStatus.OK); 
 	}
 
 
@@ -55,7 +55,7 @@ public class EmployeeController {
 	public ResponseEntity<String> deleteEmployee (@PathVariable ("id") Long id) {
 		Employee employee = employeeService.getConsultId(id);
 		employeeService.delete_Employee(employee);
-		return new ResponseEntity<String>("Employee delete", HttpStatus.OK);
+		return new ResponseEntity<>("Employee delete", HttpStatus.OK);
 
 	}
 
