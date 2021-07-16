@@ -25,7 +25,7 @@ public class Position {
 	@Column (name = "idPosition")
 	private Long id;	
 	
-	@Column (name = "name")
-	private String name;
+	@Column (name = "role")
+	private String role;
 	
 }
