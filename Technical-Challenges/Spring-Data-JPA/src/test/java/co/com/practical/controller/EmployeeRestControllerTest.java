@@ -21,6 +21,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import co.com.practical.model.Employee;
+import co.com.practical.model.Person;
+import co.com.practical.model.Position;
 import co.com.practical.service.EmployeeService;
 
 @RunWith(SpringRunner.class)
@@ -42,8 +44,15 @@ public class EmployeeRestControllerTest {
 		employee = Employee.builder()
 				.id(1L)
 				.salary(2000)
+				.position(Position.builder()
+						.role("dev").build())
+				.person(Person.builder()
+						.name("Juan Antonio")
+						.lastname("Vargas Bustos")
+						.address("cra 12 #30-99")
+						.cellphone("313000000").build())
 				.build();
-		
+
 	}
 
 
@@ -105,7 +114,6 @@ public class EmployeeRestControllerTest {
 
 
 	}
-	
 
 
 	public static String asJsonString(final Object obj) {
