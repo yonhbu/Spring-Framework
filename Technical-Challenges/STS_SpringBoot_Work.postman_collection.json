@@ -7,12 +7,12 @@
 	},
 	"item": [
 		{
-			"name": "List all Employees",
+			"name": "List all Employees Optional Role",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/consult",
+					"raw": "http://localhost:8080/api/consult?role=dev",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -21,6 +21,12 @@
 					"path": [
 						"api",
 						"consult"
+					],
+					"query": [
+						{
+							"key": "role",
+							"value": "dev"
+						}
 					]
 				}
 			},
@@ -53,7 +59,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/consultByRole/QA",
+					"raw": "http://localhost:8080/api/consultByRole/dev",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -62,7 +68,7 @@
 					"path": [
 						"api",
 						"consultByRole",
-						"QA"
+						"dev"
 					]
 				}
 			},
@@ -78,7 +84,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \t\n\t\"salary\": 550000,\n\t\"position\": {\n    \"role\":\"DEV\"\n    } ,\n    \"person\": {\n        \"name\": \"Juan Antonio\",\n        \"lastname\": \"Vargas Bustos\",\n        \"address\": \"cra 12 #30-99\",\n        \"cellphone\": \"313000000\",\n        \"cityName\": \"Medellin\"\n    }\n}",
+					"raw": "{ \t\n\t\"salary\": 500000,\n\t\"position\": {\n    \"role\":\"dev\"\n    } ,\n    \"person\": {\n        \"name\": \"Juan Antonio\",\n        \"lastname\": \"Vargas Bustos\",\n        \"address\": \"cra 12 #30-99\",\n        \"cellphone\": \"313000000\",\n        \"cityName\": \"Medellin\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
