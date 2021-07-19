@@ -9,7 +9,7 @@ In this repository we work with Spring Boot and with Spring Data. Using these tw
 - Java - Spring Boot Framework
 - Postman - Testing API
 - H2 - Database
-- JDK - Java 11
+- JDK - Java 8
 - Project Construction - Maven
 - Core - Spring MVC
 - Library - Spring Boot Actuator
