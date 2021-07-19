@@ -1,6 +1,8 @@
 package co.com.practical.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import co.com.practical.model.Employee;
 import co.com.practical.service.EmployeeService;
@@ -26,19 +29,29 @@ public class EmployeeRestController {
 	private EmployeeService employeeService;
 
 
-
 	@GetMapping("/consult")
-	public ResponseEntity<List<Employee>> consultEmployee () {
-		return new ResponseEntity<>(employeeService.getConsult(), HttpStatus.OK);
+	public ResponseEntity<List<Employee>> consultEmployeesOptionalRole (@RequestParam Optional<String> role) {
+
+		if(role.isPresent()) {
+
+			return new ResponseEntity<>(employeeService.getConsultByRole(role.get()), HttpStatus.OK);
+
+		} else {
+			return new ResponseEntity<>(employeeService.getConsult(), HttpStatus.OK);
+		}
+
+
 	}
 
+
 	@GetMapping("/consultByRole/{role}")
-	public ResponseEntity<List<Employee>> consultEmployeesByRole (@PathVariable("role") String role) {
+	public ResponseEntity<List<Employee>> consultEmployeesxRole (@PathVariable("role") String role) {
 		return new ResponseEntity<>(employeeService.getConsultByRole(role), HttpStatus.OK);
+
 	}
 
 	@GetMapping("/consultId/{id}")
-	public ResponseEntity<Employee> consultxID (@PathVariable("id") Long id) {
+	public ResponseEntity<Employee> consulEmployeexID (@PathVariable("id") Long id) {
 		return new ResponseEntity<>(employeeService.getConsultId(id),HttpStatus.OK);		
 
 	}

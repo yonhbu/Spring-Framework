@@ -64,6 +64,14 @@ public class EmployeeRestControllerTest {
 		.andExpect(status().isOk());
 	}
 	
+	@Test
+	public void testConsultEmployeeRol_isPresent() throws Exception {
+
+		doReturn(new ArrayList<>()).when(employeeService).getConsult();
+		this.mockMvc.perform(get("/api/consult?role=dev"))
+		.andExpect(status().isOk());
+	}
+	
 	
 	@Test
 	public void ConsultEmployeexRole() throws Exception 

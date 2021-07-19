@@ -20,6 +20,7 @@ public class EmployeeService {
 		return (List<Employee>) employeeRepository.findAll();
 	}
 
+
 	public List<Employee> getConsultByRole (String role) {
 		return (List<Employee>) employeeRepository.findEmployeesByPosition(role);
 	}
