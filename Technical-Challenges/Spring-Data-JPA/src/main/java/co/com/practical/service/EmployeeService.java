@@ -19,10 +19,13 @@ public class EmployeeService {
 	public List<Employee> getConsult () {
 		return (List<Employee>) employeeRepository.findAll();
 	}
-	
+
+	public List<Employee> getConsultByRole (String role) {
+		return (List<Employee>) employeeRepository.findEmployeesByPosition(role);
+	}
 
 	public Employee getConsultId (Long id) {		
-		return employeeRepository.findAllById(id); 		
+		return employeeRepository.findEmployeesById(id); 		
 	}	
 	
 

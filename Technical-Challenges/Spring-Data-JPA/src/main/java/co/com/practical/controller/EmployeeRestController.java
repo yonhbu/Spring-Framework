@@ -32,14 +32,13 @@ public class EmployeeRestController {
 		return new ResponseEntity<>(employeeService.getConsult(), HttpStatus.OK);
 	}
 
+	@GetMapping("/consultByRole/{role}")
+	public ResponseEntity<List<Employee>> consultEmployeesByRole (@PathVariable("role") String role) {
+		return new ResponseEntity<>(employeeService.getConsultByRole(role), HttpStatus.OK);
+	}
 
 	@GetMapping("/consultId/{id}")
 	public ResponseEntity<Employee> consultxID (@PathVariable("id") Long id) {
-		Employee employee = employeeService.getConsultId(id);
-		if(employee == null)
-		{
-			throw new RuntimeException("Employee Id not found - " + employee);
-		}
 		return new ResponseEntity<>(employeeService.getConsultId(id),HttpStatus.OK);		
 
 	}
@@ -60,10 +59,6 @@ public class EmployeeRestController {
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<String> deleteEmployee (@PathVariable ("id") Long id) {
 		Employee employee = employeeService.getConsultId(id);
-		if(employee == null)
-		{
-			throw new RuntimeException("Employee Id not found - " + employee);
-		}
 		employeeService.delete_Employee(employee);
 		return new ResponseEntity<>("Employee delete", HttpStatus.OK);
 

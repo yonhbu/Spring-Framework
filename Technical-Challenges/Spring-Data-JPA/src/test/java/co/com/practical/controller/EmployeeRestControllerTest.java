@@ -7,7 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.ArrayList;
-
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -63,6 +63,21 @@ public class EmployeeRestControllerTest {
 		this.mockMvc.perform(get("/api/consult"))
 		.andExpect(status().isOk());
 	}
+	
+	
+	@Test
+	public void ConsultEmployeexRole() throws Exception 
+	{
+		List<Employee> listEmployee = new ArrayList<>();
+		
+		listEmployee.add(employee);
+
+		when( employeeService.getConsultByRole("dev")).thenReturn((List<Employee>) listEmployee);
+		mockMvc.perform(get("/api/consultByRole/{role}", "dev"))
+		.andExpect(status().isOk());
+
+
+	}
 
 
 	@Test
@@ -114,7 +129,8 @@ public class EmployeeRestControllerTest {
 
 
 	}
-
+	
+	
 
 	public static String asJsonString(final Object obj) {
 		try {
