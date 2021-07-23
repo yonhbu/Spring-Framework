@@ -1,7 +1,10 @@
 package co.com.practical.controller;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import co.com.practical.dto.EmployeeDTO;
+import co.com.practical.dto.PersonDTO;
+import co.com.practical.dto.ResponseEmployeeDTO;
 import co.com.practical.model.Employee;
 import co.com.practical.service.EmployeeServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -55,10 +61,54 @@ public class EmployeeRestController {
 	}
 	
 	
-	@GetMapping("/returnEmployeeBySalary")
-	public ResponseEntity<List<Employee>> returnEmployeeBySalaryOrder () {
+	@GetMapping("/returnEmployeeRoleAndOrderSalary")
+	public ResponseEntity<List<ResponseEmployeeDTO>> returnEmployeeBySalaryOrder () {
 		
-		return new ResponseEntity<>(employeeService.getConsultBySalaryRoleGroup(), HttpStatus.OK);
+
+		List<ResponseEmployeeDTO> returnList = new ArrayList<>();
+		List<String> positionName = new ArrayList<>();
+		List<Employee> employeeList = employeeService.getConsult();
+		employeeList.forEach(e -> positionName.add(e.getPosition().getRole()));
+		List<String> positionRole2List = positionName.stream().distinct().collect(Collectors.toList());
+		positionRole2List.forEach(name -> {
+		 List<Employee> empleadosByPosition = employeeList.stream().filter(e2 -> e2.getPosition().getRole().equals(name)).collect(Collectors.toList());
+		 
+        List<Employee> sortedList = empleadosByPosition.stream()
+            .sorted(Comparator.comparingInt(Employee::getSalary)
+            .reversed())
+            .collect(Collectors.toList());
+		 
+	
+		 ResponseEmployeeDTO responseEmployeeDTO = new ResponseEmployeeDTO ();
+		 responseEmployeeDTO.setId(sortedList.get(0).getPosition().getId());
+		 responseEmployeeDTO.setName(sortedList.get(0).getPosition().getRole());
+		 
+		 List<EmployeeDTO> empleadosByDTOList = new ArrayList<>();
+		 sortedList.forEach(e -> {
+			 
+			 EmployeeDTO employeeDTO = new EmployeeDTO();
+			 employeeDTO.setId(e.getId());
+			 employeeDTO.setSalary(e.getSalary());
+			 
+			 PersonDTO personDTO = new PersonDTO();
+			 personDTO.setId(e.getPerson().getId());
+			 personDTO.setName(e.getPerson().getName());
+			 personDTO.setLastname(e.getPerson().getLastname());
+			 personDTO.setAddress(e.getPerson().getAddress());
+			 personDTO.setCellphone(e.getPerson().getCellphone());
+			 personDTO.setCityName(e.getPerson().getCityName());
+			 
+			 employeeDTO.setPerson(personDTO); 
+			 empleadosByDTOList.add(employeeDTO);
+			 
+		 });
+		 
+		 responseEmployeeDTO.setEmployees(empleadosByDTOList);
+		 returnList.add(responseEmployeeDTO);
+
+		});
+	    
+		return new ResponseEntity<>(returnList, HttpStatus.OK);
 
 	}
 
