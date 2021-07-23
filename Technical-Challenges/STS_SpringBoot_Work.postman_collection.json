@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/consult?role=dev",
+					"raw": "http://localhost:8080/api/consult?role=Dev",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -25,7 +25,7 @@
 					"query": [
 						{
 							"key": "role",
-							"value": "dev"
+							"value": "Dev"
 						}
 					]
 				}
@@ -59,7 +59,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/consultByRole/dev",
+					"raw": "http://localhost:8080/api/consultByRole/Dev",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -68,7 +68,27 @@
 					"path": [
 						"api",
 						"consultByRole",
-						"dev"
+						"Dev"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consult Employee by Order Salary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/returnEmployeeBySalary",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"returnEmployeeBySalary"
 					]
 				}
 			},
@@ -84,7 +104,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \t\n\t\"salary\": 500000,\n\t\"position\": {\n    \"role\":\"dev\"\n    } ,\n    \"person\": {\n        \"name\": \"Juan Antonio\",\n        \"lastname\": \"Vargas Bustos\",\n        \"address\": \"cra 12 #30-99\",\n        \"cellphone\": \"313000000\",\n        \"cityName\": \"Medellin\"\n    }\n}",
+					"raw": "{ \t\n\t\"salary\": 2000,\n\t\"position\": {\n    \"role\":\"Dev\"\n    } ,\n    \"person\": {\n        \"name\": \"Juan Antonio\",\n        \"lastname\": \"Vargas Bustos\",\n        \"address\": \"cra 12 #30-99\",\n        \"cellphone\": \"313000000\",\n        \"cityName\": \"Medellin\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -113,7 +133,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \t\n    \"id\": 1,\n\t\"salary\": 450000,\n\t\"position\": {\n    \"id\": 1,\n    \"role\":\"SR\"\n    } ,\n    \"person\": {\n        \"id\": 1,\n        \"name\": \"Juan Antonio\",\n        \"lastname\": \"Vargas Bustos\",\n        \"address\": \"cra 12 #30-99\",\n        \"cellphone\": \"313000000\",\n        \"cityName\": \"Medellin\"\n    }\n}\n",
+					"raw": "{ \t\n    \"id\": 1,\n\t\"salary\": 3000,\n\t\"position\": {\n    \"id\": 1,\n    \"role\":\"Technical Leader\"\n    } ,\n    \"person\": {\n        \"id\": 1,\n        \"name\": \"Juan Antonio\",\n        \"lastname\": \"Vargas Bustos\",\n        \"address\": \"cra 12 #30-99\",\n        \"cellphone\": \"313000000\",\n        \"cityName\": \"Medellin\"\n    }\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"

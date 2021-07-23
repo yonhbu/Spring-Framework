@@ -2,18 +2,20 @@ package co.com.practical.service;
 
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import co.com.practical.model.Employee;
-import co.com.practical.repository.EmployeeRepository;
+import co.com.practical.repository.IEmployeeRepository;
 
 
 
 @Service
-public class EmployeeService {
+public class EmployeeServiceImpl implements IEmployeeService {
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private IEmployeeRepository employeeRepository;
 	
 
 	public List<Employee> getConsult () {
@@ -23,6 +25,11 @@ public class EmployeeService {
 
 	public List<Employee> getConsultByRole (String role) {
 		return (List<Employee>) employeeRepository.findEmployeesByPosition(role);
+	}
+	
+	public List<Employee> getConsultBySalaryRoleGroup () {
+		return (List<Employee>) employeeRepository.findEmployeesByRoleOrderSalary();
+
 	}
 
 	public Employee getConsultId (Long id) {		

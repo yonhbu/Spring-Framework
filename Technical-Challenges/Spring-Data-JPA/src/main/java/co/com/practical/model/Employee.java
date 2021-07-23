@@ -30,7 +30,7 @@ public class Employee {
 	private Long id;	
 	
 	@Column (name = "salary")
-	private double salary;
+	private int salary;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idPosition")
@@ -39,5 +39,6 @@ public class Employee {
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idPerson")
 	private Person person;
+
 	
 }

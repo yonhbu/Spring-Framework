@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import co.com.practical.model.Employee;
 import co.com.practical.model.Person;
 import co.com.practical.model.Position;
-import co.com.practical.service.EmployeeService;
+import co.com.practical.service.EmployeeServiceImpl;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(EmployeeRestController.class)
@@ -34,7 +34,7 @@ public class EmployeeRestControllerTest {
 	private MockMvc mockMvc;  
 
 	@MockBean
-	private EmployeeService employeeService;
+	private EmployeeServiceImpl employeeService;
 
 	private Employee employee;
 
@@ -85,6 +85,14 @@ public class EmployeeRestControllerTest {
 		.andExpect(status().isOk());
 
 
+	}
+	
+	@Test
+	public void testreturnEmployeeBySalaryOrder () throws Exception {
+
+		doReturn(new ArrayList<>()).when(employeeService).getConsultBySalaryRoleGroup();
+		this.mockMvc.perform(get("/api/returnEmployeeBySalary"))
+		.andExpect(status().isOk());
 	}
 
 
