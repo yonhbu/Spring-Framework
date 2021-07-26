@@ -57,10 +57,10 @@ public class EmployeeRestControllerTest {
 
 
 	@Test
-	public void testConsultEmployee() throws Exception {
+	public void testConsultEmployee() throws Exception{
 
 		doReturn(new ArrayList<>()).when(employeeService).getConsult();
-		this.mockMvc.perform(get("/api/consult"))
+		mockMvc.perform(get("/api/consult"))
 		.andExpect(status().isOk());
 	}
 	
@@ -68,7 +68,7 @@ public class EmployeeRestControllerTest {
 	public void testConsultEmployeeRol_isPresent() throws Exception {
 
 		doReturn(new ArrayList<>()).when(employeeService).getConsult();
-		this.mockMvc.perform(get("/api/consult?role=dev"))
+		mockMvc.perform(get("/api/consult?role=dev"))
 		.andExpect(status().isOk());
 	}
 	
@@ -88,10 +88,10 @@ public class EmployeeRestControllerTest {
 	}
 	
 	@Test
-	public void testreturnEmployeeBySalaryOrder () throws Exception {
+	public void testReturnEmployeeBySalaryOrder () throws Exception {
 
 		doReturn(new ArrayList<>()).when(employeeService).getConsultBySalaryRoleGroup();
-		this.mockMvc.perform(get("/api/returnEmployeeBySalary"))
+		this.mockMvc.perform(get("/api/returnEmployeeRoleAndOrderSalary"))
 		.andExpect(status().isOk());
 	}
 
