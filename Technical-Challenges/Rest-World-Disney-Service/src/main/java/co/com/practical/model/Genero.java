@@ -1,7 +1,5 @@
 package co.com.practical.model;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,24 +17,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="movies")
-public class Movies {
+@Table(name="Genero")
+public class Genero {
 	
 	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "idMovies")
+	@Column (name = "idGenero")
 	private Long id;
 	
-	@Column (name = "titles")
-	private String title;
+	@Column (name = "Nombre")
+	private String nombre;
 	
-	@Column (name = "creationDate")
-	private Date creationDate;
-	
-	@Column (name = "qualification")
-	private int qualification;
-	
-	@Column (name = "associatedMovies")
-	private Character associatedMovie;
+	@Column (name = "PeliculaAsociada")
+	private Pelicula peliculaAsociada;
 
 }

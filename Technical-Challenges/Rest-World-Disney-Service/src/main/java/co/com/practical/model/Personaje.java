@@ -17,18 +17,27 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="genres")
-public class Genres {
+@Table(name="Personaje")
+public class Personaje {
 	
 	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "idGenres")
+	@Column (name = "idPersonaje")
 	private Long id;
 	
-	@Column (name = "names")
-	private String name;
+	@Column (name = "Nombre")
+	private String nombre;
 	
-	@Column (name = "associatedMovies")
-	private Movies associatedMovie;
+	@Column (name = "Edad")
+	private int edad;
+	
+	@Column (name = "Peso")
+	private int peso;
+	
+	@Column (name = "Historia")
+	private String historia;
+	
+	@Column (name = "Pelicula")
+	private Pelicula pelicula;
 
 }
