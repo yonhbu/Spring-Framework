@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="Pelicula")
-public class Pelicula {
+public class Pelicula  {
 	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "idPelicula")

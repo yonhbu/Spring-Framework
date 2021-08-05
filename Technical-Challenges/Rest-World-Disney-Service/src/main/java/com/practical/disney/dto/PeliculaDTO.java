@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import lombok.Data;
 
 @Data
-public class PeliculaDTO {
+public class PeliculaDTO  {
 	
 	private String titulo;
 	private LocalDate fechaCreacion;
