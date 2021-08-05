@@ -1,4 +1,4 @@
-package co.com.practical.disney_word;
+package com.practical.disney;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

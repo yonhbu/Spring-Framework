@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "97605d87-91bb-41c7-8095-8f7f4e8de67e",
+		"name": "STS_SpringBoot_Work Copy",
+		"description": "Esta coleccio comprende todos los endpoint para consumir cada una de los ejercicios y pruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tehcnical Exercise",
+			"item": [
+				{
+					"name": "Biblioteca",
+					"item": [
+						{
+							"name": "Hacer Prestamo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"isbn\": \"978-00718001\",\r\n    \"identificacionUsuarioBiblioteca\": \"2021ABCD03\",\r\n     \"tipoUsuario\": 3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/prestamo/prestamo",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"prestamo",
+										"prestamo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Usuario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nombre\": \"Jose Armando\",\r\n    \"apellido\": \"Reguillo Vargas\",\r\n    \"identificacionBiblioteca\": \"2021ABCD03\",\r\n    \"direccion\": \"cra 12 #30-99\",\r\n    \"telefono\": \"313000000\",\r\n    \"ciudad\": \"Medellin\",\r\n    \"tipoDeUsuario\": 3\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/prestamo/crearUsuario",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"prestamo",
+										"crearUsuario"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Libro",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"isbn\": \"978-00718001\",\r\n    \"titulo\": \"Java: A Beginner's Guide\",\r\n    \"autor\": \"Mcgraw-Hill\",\r\n    \"ejemplares\": 20\r\n\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/prestamo/crearLibro",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"prestamo",
+										"crearLibro"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Usuarios",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/prestamo/getUsuarios",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"prestamo",
+										"getUsuarios"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Libros",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/prestamo/getLibros",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"prestamo",
+										"getLibros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Prestamos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/prestamo/getPrestamos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"prestamo",
+										"getPrestamos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Prestamo por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/prestamo/getPrestamos/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"prestamo",
+										"getPrestamos",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
