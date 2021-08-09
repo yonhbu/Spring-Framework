@@ -1,10 +1,11 @@
 package com.hackerrank.biblioteca;
 
 public class ResultadoPrestarTest {
-    private int id;
+	
+    private Long id;
     private String fechaMaximaDevolucion;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -16,7 +17,7 @@ public class ResultadoPrestarTest {
         this.fechaMaximaDevolucion = fechaMaximaDevolucion;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

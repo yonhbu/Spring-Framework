@@ -1,11 +1,16 @@
-package com.hackerrank.biblioteca.dto;
+package com.hackerrank.biblioteca;
 
 
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class UsuarioDTO {
-	
+@AllArgsConstructor
+@NoArgsConstructor
+public class CrearUsuarioTest {
+
 	private Long id;
 	private String nombre;
 	private String apellido; 
@@ -15,5 +20,6 @@ public class UsuarioDTO {
 	private String ciudad; 
 	private int tipoDeUsuario;
 	
-	
+   
+    
 }

@@ -5,8 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.hackerrank.biblioteca.model.Usuario;
 
+
 @Repository
-public interface IUsuarioRepository extends CrudRepository<Usuario, Long >{
+public interface IUsuarioRepository extends CrudRepository<Usuario, Long>{
 	
 
 }

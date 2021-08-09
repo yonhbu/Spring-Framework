@@ -1,6 +1,9 @@
 package com.hackerrank.biblioteca.controller;
 
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hackerrank.biblioteca.dto.LibroDTO;
 import com.hackerrank.biblioteca.dto.PrestamoRequestDTO;
 import com.hackerrank.biblioteca.dto.PrestamoResponseDTO;
+import com.hackerrank.biblioteca.dto.PrestamoResponseDTOByID;
 import com.hackerrank.biblioteca.dto.UsuarioDTO;
 import com.hackerrank.biblioteca.model.Libro;
 import com.hackerrank.biblioteca.model.Prestamo;
@@ -24,6 +28,7 @@ import com.hackerrank.biblioteca.model.Usuario;
 import com.hackerrank.biblioteca.service.LibroService;
 import com.hackerrank.biblioteca.service.PrestamoService;
 import com.hackerrank.biblioteca.service.UsuarioService;
+
 
 @RestController
 @RequestMapping("prestamo")
@@ -51,7 +56,7 @@ public class PrestamoControlador {
 
 		// convert entity to DTO
 		UsuarioDTO usuarioResponse = modelMapper.map(usuario, UsuarioDTO.class);
-		return new ResponseEntity<>(usuarioResponse, HttpStatus.CREATED);
+		return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
 
 	}
 
@@ -66,26 +71,56 @@ public class PrestamoControlador {
 
 		// convert entity to DTO
 		LibroDTO libroResponse = modelMapper.map(libro, LibroDTO.class);
-		return new ResponseEntity<>(libroResponse, HttpStatus.CREATED);
-		
+		return new ResponseEntity<>(libroResponse, HttpStatus.OK);
+
 	}
 
-
-	@PostMapping("/prestamo")
-	public ResponseEntity<PrestamoResponseDTO> prestarLibro (@RequestBody PrestamoRequestDTO prestamoDTO){
+	@PostMapping()
+	public ResponseEntity<PrestamoResponseDTO> prestarLibro (@RequestBody PrestamoRequestDTO prestamoRequestDTO){
 
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setAmbiguityIgnored(true);
 
-		// convert DTO to entity
-		Prestamo prestamoRequest = modelMapper.map(prestamoDTO, Prestamo.class);
+		//convert DTO to entity
+		Prestamo prestamoRequest = modelMapper.map(prestamoRequestDTO, Prestamo.class);
 
 		Prestamo prestamo =  prestamoService.prestar_Libro(prestamoRequest);
 
-		// convert entity to DTO
-		PrestamoResponseDTO prestamoResponse = modelMapper.map(prestamo, PrestamoResponseDTO.class);
+		if (prestamo.getTipoUsuario()==1) {
+			LocalDate fechaPrestamo = LocalDate.now();
+			fechaPrestamo = addDaysSkippingWeekends(fechaPrestamo, 10);
+			String sDate2 = fechaPrestamo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+			prestamo.setFechaMaximaDevolucion(sDate2);
 
-		return new ResponseEntity<>(prestamoResponse, HttpStatus.CREATED);
+			// convert entity to DTO
+			PrestamoResponseDTO prestamoResponse = modelMapper.map(prestamo, PrestamoResponseDTO.class);
+			return new ResponseEntity<>(prestamoResponse, HttpStatus.OK);
+		} else if (prestamo.getTipoUsuario()==2) {
+
+			LocalDate fechaPrestamo = LocalDate.now();
+			fechaPrestamo = addDaysSkippingWeekends(fechaPrestamo, 8);
+			String sDate2 = fechaPrestamo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+			prestamo.setFechaMaximaDevolucion(sDate2);
+
+			// convert entity to DTO
+			PrestamoResponseDTO prestamoResponse = modelMapper.map(prestamo, PrestamoResponseDTO.class);
+			return new ResponseEntity<>(prestamoResponse, HttpStatus.OK);
+		} else if (prestamo.getTipoUsuario()==3) {
+
+			LocalDate fechaPrestamo = LocalDate.now();
+			fechaPrestamo = addDaysSkippingWeekends(fechaPrestamo, 7);
+			String sDate2 = fechaPrestamo.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+			prestamo.setFechaMaximaDevolucion(sDate2);
+
+			// convert entity to DTO
+			PrestamoResponseDTO prestamoResponse = modelMapper.map(prestamo, PrestamoResponseDTO.class);
+			prestamoResponse.setId(prestamo.getId());
+			return new ResponseEntity<>(prestamoResponse, HttpStatus.OK);
+		} else {
+
+			PrestamoResponseDTO prestamoResponse = modelMapper.map(prestamo, PrestamoResponseDTO.class);
+			return new ResponseEntity<>(prestamoResponse, HttpStatus.OK);
+		}
 
 	}
 
@@ -103,13 +138,35 @@ public class PrestamoControlador {
 	public ResponseEntity<List<Prestamo>> getPrestamos () {
 		return new ResponseEntity<> (prestamoService.buscar_Prestamo(), HttpStatus.ACCEPTED);
 	}
-	
-	
-	@GetMapping("/getPrestamos/{id}")
-	public ResponseEntity<Prestamo> getPrestamosxID (@PathVariable("id") Long id) {
-		return new ResponseEntity<>(prestamoService.getConsulPrestamoById(id),HttpStatus.OK);		
+
+
+	@GetMapping("/{id}")
+	public ResponseEntity<PrestamoResponseDTOByID> getPrestamosxID (@PathVariable("id") Long id) {
+
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setAmbiguityIgnored(true);
+
+		Prestamo prestamo = prestamoService.getConsulPrestamoById(id);
+
+
+		PrestamoResponseDTOByID prestamoResponseDTOByID = modelMapper.map(prestamo, PrestamoResponseDTOByID.class);
+		return new ResponseEntity<>(prestamoResponseDTOByID, HttpStatus.OK);
 
 	}
+
+
+	public LocalDate addDaysSkippingWeekends(LocalDate date, int days) {
+		LocalDate result = date;
+		int addedDays = 0;
+		while (addedDays < days) {
+			result = result.plusDays(1);
+			if (!(result.getDayOfWeek() == DayOfWeek.SATURDAY || result.getDayOfWeek() == DayOfWeek.SUNDAY)) {
+				++addedDays;
+			}
+		}
+		return result;
+	}
+
 
 
 }

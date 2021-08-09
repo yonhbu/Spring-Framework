@@ -10,6 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,23 +34,31 @@ public class Prestamo {
 	private Long id;
 	
 	@NotBlank
+	@Pattern(regexp = "^[A-Za-z0-9]+$")
+	@Size(min=1, max=10)
 	@Column (name = "Isbn")
     private String isbn;
 	
 	@NotBlank
-	@Column (name = "IdentificacionUsuarioBiblioteca")
-	private String identificacionUsuarioBiblioteca;
+	@Pattern(regexp = "^[A-Za-z0-9]+$")
+	@Size(min=1, max=10)
+	@Column (name = "IdentificacionUsuario")
+	private String identificacionUsuario;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idLibro")
 	private Libro libro;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@Column (name = "FechaMaximaDevolucion")
+	private String fechaMaximaDevolucion;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 	
 	@Column (name = "TipoUsuario")
-	private Integer tipoUsuario;
+	private int tipoUsuario;
 	
 	
 

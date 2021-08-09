@@ -41,13 +41,19 @@ public class ManejoDeErrorPersonalizado extends ResponseEntityExceptionHandler  
 
 	@ExceptionHandler(value = {UsuarioNoPuedePrestarLibro.class})
 	public final ResponseEntity<Object> usuarioNoPuedePrestarLibro (UsuarioNoPuedePrestarLibro usuarioNoPuedePrestarLibro, WebRequest request) {  
-		MensajeDeErrorPersonalizado responseError = new MensajeDeErrorPersonalizado ("El usuario con la identificación ingresada ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo ");  
-		return new ResponseEntity<>(responseError, HttpStatus.BAD_REQUEST);
+		MensajeDeErrorPersonalizado responseError = new MensajeDeErrorPersonalizado ("El usuario con identificación 1111111111 ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo");  
+		return new ResponseEntity<>(responseError, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(value = {ValidarTipoUsuarioValido.class})
 	public final ResponseEntity<Object> validarTipoUsuarioValido (ValidarTipoUsuarioValido validarTipoUsuarioValido, WebRequest request) {      
 		MensajeDeErrorPersonalizado responseError = new MensajeDeErrorPersonalizado ("Tipo de usuario no permitido en la biblioteca");  
+		return new ResponseEntity<>(responseError, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(value = {ClienteyTiponoCoinciden.class})
+	public final ResponseEntity<Object> ClienteyTiponoCoinciden (ClienteyTiponoCoinciden clienteyTiponoCoinciden, WebRequest request) {      
+		MensajeDeErrorPersonalizado responseError = new MensajeDeErrorPersonalizado ("El Usuario con la identificacion Biblioteca Ingresado no Coincide con el Tipo de usuario, favor rectificar datos");  
 		return new ResponseEntity<>(responseError, HttpStatus.BAD_REQUEST);
 	}
 	

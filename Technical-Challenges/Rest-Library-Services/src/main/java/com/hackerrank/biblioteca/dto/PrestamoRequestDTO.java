@@ -7,7 +7,7 @@ public class PrestamoRequestDTO {
 	
 	private Long id;
 	private String isbn;
-    private String identificacionUsuarioBiblioteca;
-    private Integer tipoUsuario;
+    private String identificacionUsuario;
+    private int tipoUsuario;
 	
 }

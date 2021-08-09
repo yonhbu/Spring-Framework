@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hackerrank.biblioteca.model.Libro;
 
+
 @Repository
 public interface ILibroRepository extends CrudRepository<Libro, Long>{
 	

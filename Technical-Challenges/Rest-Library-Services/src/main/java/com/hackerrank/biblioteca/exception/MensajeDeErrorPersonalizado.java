@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class MensajeDeErrorPersonalizado {
 	
-    private String message;
+    private String mensaje;
 
 }

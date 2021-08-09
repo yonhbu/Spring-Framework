@@ -4,8 +4,8 @@ package com.hackerrank.biblioteca.service;
 
 import java.util.List;
 
-import com.hackerrank.biblioteca.dto.PrestamoRequestDTO;
 import com.hackerrank.biblioteca.model.Prestamo;
+
 
 public interface IPrestamoService {
 	

@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,6 +31,8 @@ public class Libro {
 	private Long id;	
 	
 	@NotBlank
+	@Pattern(regexp = "^[A-Za-z0-9]+$")
+	@Size(min=1, max=10)
 	@Column (name = "Isbn")
     private String isbn;
 	

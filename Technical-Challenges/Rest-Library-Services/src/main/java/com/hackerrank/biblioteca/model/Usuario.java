@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,8 +38,10 @@ public class Usuario {
 	private String apellido; 
 	
 	@NotBlank
-	@Column (name = "IdentificacionBiblioteca")
-	private String identificacionBiblioteca;
+	@Pattern(regexp = "^[A-Za-z0-9]+$")
+	@Size(min=1, max=10)
+	@Column (name = "IdentificacionUsuario")
+	private String identificacionUsuario;
 	
 	@NotBlank
 	@Column (name = "Direccion")
@@ -58,7 +62,7 @@ public class Usuario {
 	
 	@NotNull
 	@Column (name = "TipoDeUsuario")
-	private Integer tipoDeUsuario;
+	private int tipoDeUsuario;
 	
 	
 
