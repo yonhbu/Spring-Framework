@@ -21,3 +21,11 @@ In this repository we work with Spring Boot and with Spring Data. Using these tw
 2. spring-boot-starter-web
 3. jpa
 4. junit
+
+**Practical Exercise Employee**
+
+Create a project in SpringBoot with an h2 database (in memory).
+The project must have the following entities: Person, Employee, Position
+
+![image](https://user-images.githubusercontent.com/32151636/129928413-c0a1212f-55a8-46ef-8e0d-865b30998be1.png)
+
