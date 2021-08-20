@@ -11,7 +11,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -30,7 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class PrestamoTests {
 
-
     public static final int USUARIO_AFILIADO = 1;
     public static final int USUARIO_EMPLEADO = 2;
     public static final int USUARIO_INVITADO = 3;
@@ -41,44 +39,14 @@ public class PrestamoTests {
 
     @Autowired
     private ObjectMapper objectMapper;
-   
-    @Before
-    public void initLibro () throws Exception {
-    
 
-     MvcResult resultadoCrearPrimerLibro = mvc.perform(
-                MockMvcRequestBuilders.post("/prestamo/crearLibro")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new CrearLibroTest(1L, "978J007101", "Java: A Beginner's Guide","Mcgraw-Hill", 20))))
-                .andExpect(status().isOk())
-                .andReturn();
-   	 
-     MvcResult resultadoCrearSegundoLibro = mvc.perform(
-             MockMvcRequestBuilders.post("/prestamo/crearLibro")
-                     .contentType(MediaType.APPLICATION_JSON)
-                     .content(objectMapper.writeValueAsString(new CrearLibroTest(2L, "978J007102", "ANGULAR: A Beginner's Guide","Mcgraw-Hill", 20))))
-             .andExpect(status().isOk())
-             .andReturn();
-     
-    
-     
-    }
-    
-    
     @Test
     public void prestamoLibroUsuarioAfiliadoDeberiaAlmacenarCorrectamenteYCalcularFechaDeDevolucion() throws Exception {
-    
-    	 MvcResult resultadoCrearUsuarioAfiliado = mvc.perform(
-                 MockMvcRequestBuilders.post("/prestamo/crearUsuario")
-                         .contentType(MediaType.APPLICATION_JSON)
-                         .content(objectMapper.writeValueAsString(new CrearUsuarioTest(1L,"Jose Armando","Reguillo Vargas", "2021ABCD01","cra 12 #30-99","313000000","Medellin", 1))))
-                 .andExpect(status().isOk())
-                 .andReturn();
 
         MvcResult resultadoLibroPrestado = mvc.perform(
                 MockMvcRequestBuilders.post("/prestamo")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest(1L, "978J007101", "2021ABCD01", USUARIO_AFILIADO))))
+                        .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest("ASDA7884", "974148", USUARIO_AFILIADO))))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.fechaMaximaDevolucion").exists())
@@ -91,6 +59,7 @@ public class PrestamoTests {
         fechaPrestamo = addDaysSkippingWeekends(fechaPrestamo, 10);
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+
         mvc.perform(MockMvcRequestBuilders
                 .get("/prestamo/" + resultadoPrestamo.getId())
                 .accept(MediaType.APPLICATION_JSON))
@@ -98,28 +67,20 @@ public class PrestamoTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.fechaMaximaDevolucion", is(fechaPrestamo.format(formato))))
-                .andExpect(jsonPath("$.isbn", is("978J007101")))
-                .andExpect(jsonPath("$.identificacionUsuario", is("2021ABCD01")))
+                .andExpect(jsonPath("$.isbn", is("ASDA7884")))
+                .andExpect(jsonPath("$.identificacionUsuario", is("974148")))
                 .andExpect(jsonPath("$.tipoUsuario", is(USUARIO_AFILIADO)));
+
 
     }
 
-    
-    
     @Test
     public void prestamoLibroUsuarioEmpleadoDeberiaAlmacenarCorrectamenteYCalcularFechaDeDevolucion() throws Exception {
-    	
-   	 MvcResult resultadoCrearUsuarioEmpleado = mvc.perform(
-             MockMvcRequestBuilders.post("/prestamo/crearUsuario")
-                     .contentType(MediaType.APPLICATION_JSON)
-                     .content(objectMapper.writeValueAsString(new CrearUsuarioTest(1L,"Juan Antonio","Valencia Gomez", "2021ABCD02","cra 12 #30-99","313000000","Medellin", 2))))
-             .andExpect(status().isOk())
-             .andReturn();
 
         MvcResult resultadoLibroPrestado = mvc.perform(MockMvcRequestBuilders
                 .post("/prestamo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest(1L, "978J007101", "2021ABCD02", USUARIO_EMPLEADO))))
+                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest("AWQ489", "7481545", USUARIO_EMPLEADO))))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
@@ -140,29 +101,20 @@ public class PrestamoTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.fechaMaximaDevolucion", is(fechaPrestamo.format(formato))))
-                .andExpect(jsonPath("$.isbn", is("978J007101")))
-                .andExpect(jsonPath("$.identificacionUsuario", is("2021ABCD02")))
+                .andExpect(jsonPath("$.isbn", is("AWQ489")))
+                .andExpect(jsonPath("$.identificacionUsuario", is("7481545")))
                 .andExpect(jsonPath("$.tipoUsuario", is(USUARIO_EMPLEADO)));
 
 
     }
-    
-    
+
     @Test
     public void prestamoLibroUsuarioInvitadoDeberiaAlmacenarCorrectamenteYCalcularFechaDeDevolucion() throws Exception {
-    	
-    	MvcResult resultadoCrearUsuarioInvitado = mvc.perform(
-                MockMvcRequestBuilders.post("/prestamo/crearUsuario")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new CrearUsuarioTest(1L,"Yesica","Durango", "2021ABCD03","cra 12 #30-99","313000000","Medellin", 3))))
-                .andExpect(status().isOk())
-                .andReturn();
-
 
         MvcResult resultadoLibroPrestado = mvc.perform(MockMvcRequestBuilders
                 .post("/prestamo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest(1L, "978J007101", "2021ABCD03", USUARIO_INVITADO))))
+                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest("EQWQW8545", "74851254", USUARIO_INVITADO))))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
@@ -183,28 +135,20 @@ public class PrestamoTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.fechaMaximaDevolucion", is(fechaPrestamo.format(formato))))
-                .andExpect(jsonPath("$.isbn", is("978J007101")))
-                .andExpect(jsonPath("$.identificacionUsuario", is("2021ABCD03")))
+                .andExpect(jsonPath("$.isbn", is("EQWQW8545")))
+                .andExpect(jsonPath("$.identificacionUsuario", is("74851254")))
                 .andExpect(jsonPath("$.tipoUsuario", is(USUARIO_INVITADO)));
 
 
     }
-    
-    
+
     @Test
     public void usuarioInvitadoTratandoDePrestarUnSegundoLibroDeberiaRetornarExcepcion() throws Exception {
-    	
-    	MvcResult resultadoCrearUsuarioInvitado = mvc.perform(
-                MockMvcRequestBuilders.post("/prestamo/crearUsuario")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new CrearUsuarioTest(1L,"Yesica","Durango", "1111111111","cra 12 #30-99","313000000","Medellin", 3))))
-                .andExpect(status().isOk())
-                .andReturn();
 
         mvc.perform(MockMvcRequestBuilders
                 .post("/prestamo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest(1L,"978J007101", "1111111111", USUARIO_INVITADO))))
+                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest("EQWQW8545", "1111111111", USUARIO_INVITADO))))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
@@ -213,29 +157,20 @@ public class PrestamoTests {
         mvc.perform(MockMvcRequestBuilders
                 .post("/prestamo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest(2L, "978J007102", "1111111111", USUARIO_INVITADO))))
+                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest("EQWQW8545", "1111111111", USUARIO_INVITADO))))
                 .andDo(print())
                 .andExpect(status().is4xxClientError())
-                .andExpect(jsonPath("$.mensaje", is("El usuario con identificación 1111111111 ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo")));
+                .andExpect(jsonPath("$.mensaje", is("El usuario con identificaciÃ³n 1111111111 ya tiene un libro prestado por lo cual no se le puede realizar otro prÃ©stamo")));
 
     }
 
-
-    
     @Test
     public void usuarioNoInvitadoTratandoDePrestarUnSegundoLibroDeberiaPrestarloCorrectamente() throws Exception {
-    	
-   	 MvcResult resultadoCrearUsuarioAfiliado = mvc.perform(
-             MockMvcRequestBuilders.post("/prestamo/crearUsuario")
-                     .contentType(MediaType.APPLICATION_JSON)
-                     .content(objectMapper.writeValueAsString(new CrearUsuarioTest(1L,"Jose Armando","Reguillo Vargas", "1111111111","cra 12 #30-99","313000000","Medellin", 1))))
-             .andExpect(status().isOk())
-             .andReturn();
 
         mvc.perform(MockMvcRequestBuilders
                 .post("/prestamo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest(1L,"978J007101", "1111111111", USUARIO_AFILIADO))))
+                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest("EQWQW8545", "1111111111", USUARIO_AFILIADO))))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
@@ -244,27 +179,27 @@ public class PrestamoTests {
         mvc.perform(MockMvcRequestBuilders
                 .post("/prestamo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest(2L,"978J007102", "1111111111", USUARIO_AFILIADO))))
+                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest("EQWQW8545", "1111111111", USUARIO_AFILIADO))))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.fechaMaximaDevolucion").exists());
 
     }
-    
+
     @Test
     public void prestamoConTipoDeUsuarioNoPermitidoDeberiaRetornarExcepcion() throws Exception {
 
         mvc.perform(MockMvcRequestBuilders
                 .post("/prestamo")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest(8L,"978J007102", "1111111111", USUARIO_DESCONOCIDO))))
+                .content(objectMapper.writeValueAsString(new SolicitudPrestarLibroTest("EQWQW8545", "1111111111", USUARIO_DESCONOCIDO))))
                 .andDo(print())
                 .andExpect(status().is4xxClientError())
                 .andExpect(jsonPath("$.mensaje", is("Tipo de usuario no permitido en la biblioteca")));
     }
 
-    
+
 
     public static LocalDate addDaysSkippingWeekends(LocalDate date, int days) {
         LocalDate result = date;
@@ -277,5 +212,4 @@ public class PrestamoTests {
         }
         return result;
     }
-    
 }

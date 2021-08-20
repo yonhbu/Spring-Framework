@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PrestamoResponseDTO {
 	
-	private Long id;
+	private int id;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private String fechaMaximaDevolucion; 

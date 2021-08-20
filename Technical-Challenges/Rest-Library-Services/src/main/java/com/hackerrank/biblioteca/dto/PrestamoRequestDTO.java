@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PrestamoRequestDTO {
 	
-	private Long id;
+	private int id;
 	private String isbn;
     private String identificacionUsuario;
     private int tipoUsuario;

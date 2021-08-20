@@ -1,10 +1,11 @@
 package com.hackerrank.biblioteca.service;
 
 
-
 import java.util.List;
 
 import com.hackerrank.biblioteca.model.Prestamo;
+
+
 
 
 public interface IPrestamoService {
@@ -13,6 +14,6 @@ public interface IPrestamoService {
 	
 	public Prestamo prestar_Libro (Prestamo prestamo);
 	
-	public Prestamo getConsulPrestamoById (Long id);
+	public Prestamo getConsulPrestamoById (int id);
 	
 }

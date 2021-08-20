@@ -30,6 +30,7 @@ import com.hackerrank.biblioteca.service.PrestamoService;
 import com.hackerrank.biblioteca.service.UsuarioService;
 
 
+
 @RestController
 @RequestMapping("prestamo")
 public class PrestamoControlador {
@@ -141,7 +142,7 @@ public class PrestamoControlador {
 
 
 	@GetMapping("/{id}")
-	public ResponseEntity<PrestamoResponseDTOByID> getPrestamosxID (@PathVariable("id") Long id) {
+	public ResponseEntity<PrestamoResponseDTOByID> getPrestamosxID (@PathVariable("id") int id) {
 
 		ModelMapper modelMapper = new ModelMapper();
 		modelMapper.getConfiguration().setAmbiguityIgnored(true);

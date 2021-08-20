@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class LibroDTO {
 	
-	private Long id;
+	private int id;
     private String isbn;
 	private String titulo;
     private String autor;

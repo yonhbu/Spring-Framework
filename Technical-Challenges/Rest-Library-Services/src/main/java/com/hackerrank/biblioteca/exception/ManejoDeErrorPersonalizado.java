@@ -40,8 +40,8 @@ public class ManejoDeErrorPersonalizado extends ResponseEntityExceptionHandler  
 	
 
 	@ExceptionHandler(value = {UsuarioNoPuedePrestarLibro.class})
-	public final ResponseEntity<Object> usuarioNoPuedePrestarLibro (UsuarioNoPuedePrestarLibro usuarioNoPuedePrestarLibro, WebRequest request) {  
-		MensajeDeErrorPersonalizado responseError = new MensajeDeErrorPersonalizado ("El usuario con identificación 1111111111 ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo");  
+	public final ResponseEntity<MensajeDeErrorPersonalizado> usuarioNoPuedePrestarLibro (UsuarioNoPuedePrestarLibro usuarioNoPuedePrestarLibro, WebRequest request) {  
+		MensajeDeErrorPersonalizado responseError = new MensajeDeErrorPersonalizado (usuarioNoPuedePrestarLibro.getMessage());  
 		return new ResponseEntity<>(responseError, HttpStatus.NOT_FOUND);
 	}
 	

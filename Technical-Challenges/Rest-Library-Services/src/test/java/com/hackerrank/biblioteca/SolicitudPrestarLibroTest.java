@@ -2,13 +2,11 @@ package com.hackerrank.biblioteca;
 
 public class SolicitudPrestarLibroTest {
 
-	private Long id;
     private String isbn;
     private String identificacionUsuario;
     private int tipoUsuario;
 
-    public SolicitudPrestarLibroTest(Long id, String isbn, String identificacionUsuario, int tipoUsuario) {
-    	this.id = id;
+    public SolicitudPrestarLibroTest(String isbn, String identificacionUsuario, int tipoUsuario) {
         this.isbn = isbn;
         this.identificacionUsuario = identificacionUsuario;
         this.tipoUsuario = tipoUsuario;
@@ -25,15 +23,4 @@ public class SolicitudPrestarLibroTest {
     public int getTipoUsuario() {
         return tipoUsuario;
     }
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-    
-    
-    
 }

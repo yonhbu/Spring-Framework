@@ -1,12 +1,11 @@
 package com.hackerrank.biblioteca.service;
 
 
-
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,7 +65,7 @@ public class PrestamoService implements IPrestamoService{
 				
 			} else {
 				
-				throw new UsuarioNoPuedePrestarLibro();
+				throw new UsuarioNoPuedePrestarLibro("El usuario con identificación " + prestamo.getIdentificacionUsuario() + " ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo");
 			}
 			
 			
@@ -81,8 +80,13 @@ public class PrestamoService implements IPrestamoService{
 	public boolean validarTipoUsuarioySiyaTieneAlgunPrestamo (Prestamo prestamoNuevo) {
 
 		List<Prestamo> listaPrestamosActuales = buscar_Prestamo();
+		
+		final List<Prestamo> filtroTipoUser3 =
+				listaPrestamosActuales.stream()
+		         .filter(tipo -> tipo.getTipoUsuario() == 3)
+		         .collect(Collectors.toList());
 
-		for (Prestamo prestamo : listaPrestamosActuales) {
+		for (Prestamo prestamo : filtroTipoUser3) {
 			if ((prestamo.getIdentificacionUsuario().equals(prestamoNuevo.getIdentificacionUsuario())) && (prestamo.getUsuario().getTipoDeUsuario() == 3)) {
 				return true;
 			}
@@ -115,7 +119,7 @@ public class PrestamoService implements IPrestamoService{
 	}
 
 	@Override
-	public Prestamo getConsulPrestamoById(Long id) {
+	public Prestamo getConsulPrestamoById(int id) {
 		return iPrestamoRepository.findPrestamoById(id); 
 	}
 
@@ -128,10 +132,15 @@ public class PrestamoService implements IPrestamoService{
 		List<Usuario> listadeUsuarios = usuarioService.buscar_Usuario();
 
 		boolean validacionUsuario = validarTipoUsuarioySiyaTieneAlgunPrestamo(prestamo);
+		
+		final List<Libro> filtroISBN =
+				listadeLibros.stream()
+		         .filter(isbn -> isbn.getIsbn().equals(prestamo.getIsbn()))
+		         .collect(Collectors.toList());
 
 		if (!validacionUsuario) {
 
-			for (Libro libro : listadeLibros) {
+			for (Libro libro : filtroISBN) {
 				if (libro.getIsbn().equals(prestamo.getIsbn())) {
 					if (libro.getEjemplares() > 0) {
 						LocalDate fechaPrestamo = LocalDate.now();
@@ -147,7 +156,8 @@ public class PrestamoService implements IPrestamoService{
 				} else {
 					throw new IsbnNoExiste();
 				}
-
+				
+			}
 				for (Usuario usuario : listadeUsuarios) {
 					if (usuario.getIdentificacionUsuario().equalsIgnoreCase(prestamo.getIdentificacionUsuario())) {
 						prestamo.setUsuario(usuario);
@@ -167,12 +177,10 @@ public class PrestamoService implements IPrestamoService{
 
 				}
 
-			}
+			}	return prestamo;
 
 		}
-		return prestamo;
 
-	}
 
 	
 	public Prestamo getConsultUsuarioDos (Prestamo prestamo) {
@@ -184,9 +192,16 @@ public class PrestamoService implements IPrestamoService{
 
 		boolean validacionUsuario = validarTipoUsuarioySiyaTieneAlgunPrestamo(prestamo);
 
-		if (!validacionUsuario) {
+		if (!validacionUsuario) { 
+			
+			
+			final List<Libro> filtroISBN =
+					listadeLibros.stream()
+			         .filter(isbn -> isbn.getIsbn().equals(prestamo.getIsbn()))
+			         .collect(Collectors.toList());
 
-			for (Libro libro : listadeLibros) {
+		
+			for (Libro libro : filtroISBN) {
 				if (libro.getIsbn().equals(prestamo.getIsbn())) {
 					if (libro.getEjemplares() > 0) {
 						LocalDate fechaPrestamo = LocalDate.now();
@@ -201,6 +216,7 @@ public class PrestamoService implements IPrestamoService{
 				} else {
 					throw new IsbnNoExiste();
 				}
+			}
 
 				for (Usuario usuario : listadeUsuarios) {
 					if (usuario.getIdentificacionUsuario().equalsIgnoreCase(prestamo.getIdentificacionUsuario())) {
@@ -220,12 +236,9 @@ public class PrestamoService implements IPrestamoService{
 
 				}
 
-			}
+			}return prestamo;
 
 		}
-		return prestamo;
-
-	}
 	
 	
 	public Prestamo getConsultUsuarioUno (Prestamo prestamo) {
@@ -237,9 +250,15 @@ public class PrestamoService implements IPrestamoService{
 
 		boolean validacionUsuario = validarTipoUsuarioySiyaTieneAlgunPrestamo(prestamo);
 
+		final List<Libro> filtroISBN =
+				listadeLibros.stream()
+		         .filter(isbn -> isbn.getIsbn().equals(prestamo.getIsbn()))
+		         .collect(Collectors.toList());
+
 		if (!validacionUsuario) {
 
-			for (Libro libro : listadeLibros) {
+			for (Libro libro : filtroISBN) {
+				if (libro.getIsbn().equals(prestamo.getIsbn())) {
 					if (libro.getEjemplares() > 0) {
 						LocalDate fechaPrestamo = LocalDate.now();
 						fechaPrestamo = addDaysSkippingWeekends(fechaPrestamo, 10);
@@ -249,6 +268,12 @@ public class PrestamoService implements IPrestamoService{
 					} else {
 						throw new NoStockDisponibles();
 					}
+					
+				}
+					
+					else {
+					throw new IsbnNoExiste();
+				}
 
 
 				for (Usuario usuario : listadeUsuarios) {

@@ -28,7 +28,7 @@ public class Libro {
 	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "idLibro")
-	private Long id;	
+	private int id;	
 	
 	@NotBlank
 	@Pattern(regexp = "^[A-Za-z0-9]+$")

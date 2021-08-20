@@ -7,5 +7,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class UsuarioNoPuedePrestarLibro extends RuntimeException{
 	
 	private static final long serialVersionUID = 1L;
+	
+	public UsuarioNoPuedePrestarLibro (String message) {
+	    super(message);
+	  }
 		
 }

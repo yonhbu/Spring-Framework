@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PrestamoResponseDTOByID {
 	
-	private Long id;
+	private int id;
 	private String isbn;
     private String identificacionUsuario;
     private int tipoUsuario;

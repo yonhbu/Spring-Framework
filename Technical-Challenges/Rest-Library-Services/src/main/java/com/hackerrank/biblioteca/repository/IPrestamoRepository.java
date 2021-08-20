@@ -5,9 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.hackerrank.biblioteca.model.Prestamo;
 
+
+
+
 @Repository
-public interface IPrestamoRepository extends JpaRepository<Prestamo, Long>{
+public interface IPrestamoRepository extends JpaRepository<Prestamo, Integer>{
 	
-	Prestamo findPrestamoById(Long id);
+	Prestamo findPrestamoById(int id);
 
 }

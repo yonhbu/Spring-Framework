@@ -31,7 +31,7 @@ public class Prestamo {
 	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "idPrestamo")
-	private Long id;
+	private int id;
 	
 	@NotBlank
 	@Pattern(regexp = "^[A-Za-z0-9]+$")
