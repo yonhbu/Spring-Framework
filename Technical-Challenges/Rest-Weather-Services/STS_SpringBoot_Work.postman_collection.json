@@ -1,0 +1,266 @@
+{
+	"info": {
+		"_postman_id": "3f84b5b0-9d47-4feb-8c28-1b58d08492d7",
+		"name": "STS_SpringBoot_Work",
+		"description": "Esta coleccio comprende todos los endpoint para consumir cada una de los ejercicios y pruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tehcnical Exercise",
+			"item": [
+				{
+					"name": "Weather",
+					"item": [
+						{
+							"name": "Create a New Weather",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"PushEvent\",\r\n    \"isPublic\": false,\r\n    \"repoId\": 2,\r\n    \"actorId\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/events",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actualizar Personaje",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Aladdín\",\r\n    \"edad\": 20,\r\n    \"peso\": 10,\r\n    \"historia\": \"Animado y diseñado por Glen Keane, Aladdin es un hombre delgado tradicionalmente guapo, y ligeramente musculoso joven con hombros anchos\",\r\n    \"peliculaID\": [\r\n        {\r\n          \"id\": 1\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/disney/personaje/update",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"disney",
+										"personaje",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Eliminar Pelicula",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/disney/pelicula/delete/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"disney",
+										"pelicula",
+										"delete",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Events weather",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/weather?city=LondoN&medellin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "LondoN"
+										},
+										{
+											"key": "medellin",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Events weather Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/weather?city=LondoN&medellin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "LondoN"
+										},
+										{
+											"key": "medellin",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Events PTIONAL CITY weather Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/events",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Personajes Opcional name",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/disney/personaje/characters?name=Aladdín",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"disney",
+										"personaje",
+										"characters"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Aladdín"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Event By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/events/2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"events",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Event By Repos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/repos/1/events",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"repos",
+										"1",
+										"events"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listar Peliculas",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/disney/pelicula/peliculas",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"disney",
+										"pelicula",
+										"peliculas"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
