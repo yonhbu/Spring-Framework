@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.hackerrank.weather.model.Weather;
 import com.hackerrank.weather.repository.WeatherRepository;
 
@@ -23,7 +22,7 @@ public class WeatherService implements IWeatherService{
 
 	@Override
 	public Weather create_Weather(Weather weather) {
-		log.info("*******INIT CREATED Weather ******");
+		log.info("*******INIT CREATED WEATHER ******");
 		return weatherRepository.save(weather);
 	}
 
@@ -35,14 +34,10 @@ public class WeatherService implements IWeatherService{
 
 
 	@Override
-	public List<Weather> getConsultByInfo(Object info) {
-		return (List<Weather>) weatherRepository.findWeatherByInfo(info);
+	public List<Weather> getConsult(List<String> city) {
+			return (List<Weather>) weatherRepository.findWeatherByCityIn(city);
+
 	}
 
-
-	@Override
-	public List<Weather> getConsult() {
-		return (List<Weather>) weatherRepository.findAll();
-	}
 
 }

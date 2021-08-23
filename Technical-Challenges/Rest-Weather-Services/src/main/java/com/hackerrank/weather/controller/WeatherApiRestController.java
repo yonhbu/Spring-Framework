@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +36,6 @@ public class WeatherApiRestController {
 	
 	@Autowired
 	WeatherService weatherService;
-	
-	static SimpleDateFormat DATE_PATTERN = new SimpleDateFormat("dd/M/yyyy");
 	
 	@PostMapping("/weather")
 	public ResponseEntity<WeatherResponseDTO> createWeather (@RequestBody WeatherRequestDTO weatherDTO) throws ParseException {
@@ -66,13 +65,11 @@ public class WeatherApiRestController {
 		return new ResponseEntity<>(weatherResponseDTO, HttpStatus.OK);
 		
 	}
-	
+
 	@GetMapping("/weather")
-	public ResponseEntity<List<Weather>> consultWeathersOptionalInfo (@RequestParam Optional<Object> info) {
-		if(info.isPresent()) {
-			return new ResponseEntity<>(weatherService.getConsultByInfo(info.get()), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<>(weatherService.getConsult(), HttpStatus.OK);
-		}
+	public ResponseEntity<List<Weather>> consultWeathersOptionalInfo (@RequestParam(required = false) List<String> city) {
+		
+		return new ResponseEntity<>(weatherService.getConsult(city), HttpStatus.OK);
 	}
+
 }

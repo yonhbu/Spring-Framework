@@ -9,12 +9,11 @@ import com.hackerrank.weather.model.Weather;
 
 public interface IWeatherService {
 	
-	public List<Weather> getConsult ();
+	public List<Weather> getConsult (List<String> cityList);
 	
 	public Weather create_Weather (Weather weather);
 	
 	public Optional<Weather> getConsulWeatherById(Integer id);
-	
-	public List<Weather> getConsultByInfo (Object info);
+
 	
 }
