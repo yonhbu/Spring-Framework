@@ -13,13 +13,13 @@
 					"name": "Weather",
 					"item": [
 						{
-							"name": "Create a New Weather",
+							"name": "Create Weather",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"type\": \"PushEvent\",\r\n    \"isPublic\": false,\r\n    \"repoId\": 2,\r\n    \"actorId\": 2\r\n}",
+									"raw": "{\r\n   \"date\": \"2019-06-12\",\r\n   \"lat\": 36.1189,\r\n   \"lon\": -86.6892,\r\n   \"city\": \"london\",\r\n   \"state\": \"Tennessee\",\r\n   \"temperatures\": [17.3, 16.8, 16.4, 16.0, 15.6, 15.3, 15.0, 14.9, 15.8, 18.0, 20.2, 22.3, 23.8, 24.9, 25.5, 25.7, 24.9, 23.0, 21.7, 20.8, 29.9, 29.2, 28.6, 28.1]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -27,232 +27,103 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8000/events",
+									"raw": "http://localhost:8000/weather",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
-										"events"
+										"weather"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Actualizar Personaje",
+							"name": "List All Weather",
 							"request": {
-								"method": "PUT",
+								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Aladdín\",\r\n    \"edad\": 20,\r\n    \"peso\": 10,\r\n    \"historia\": \"Animado y diseñado por Glen Keane, Aladdin es un hombre delgado tradicionalmente guapo, y ligeramente musculoso joven con hombros anchos\",\r\n    \"peliculaID\": [\r\n        {\r\n          \"id\": 1\r\n    }\r\n  ]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
+								"url": {
+									"raw": "http://localhost:8000/weather",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Weather City",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/weather?city=London",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "London"
 										}
-									}
-								},
-								"url": {
-									"raw": "http://localhost:8000/disney/personaje/update",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"disney",
-										"personaje",
-										"update"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Eliminar Pelicula",
+							"name": "List All Weather Date",
 							"request": {
-								"method": "DELETE",
+								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8000/disney/pelicula/delete/1",
+									"raw": "http://localhost:8000/weather?date=2019-06-11",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
 									"port": "8000",
 									"path": [
-										"disney",
-										"pelicula",
-										"delete",
+										"weather"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2019-06-11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Weather By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/weather/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather",
 										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List All Events weather",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/weather?city=LondoN&medellin",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"weather"
-									],
-									"query": [
-										{
-											"key": "city",
-											"value": "LondoN"
-										},
-										{
-											"key": "medellin",
-											"value": null
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List All Events weather Copy",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/weather?city=LondoN&medellin",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"weather"
-									],
-									"query": [
-										{
-											"key": "city",
-											"value": "LondoN"
-										},
-										{
-											"key": "medellin",
-											"value": null
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List All Events PTIONAL CITY weather Copy",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/events",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"events"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Listar Personajes Opcional name",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/disney/personaje/characters?name=Aladdín",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"disney",
-										"personaje",
-										"characters"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "Aladdín"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List Event By ID",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/events/2",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"events",
-										"2"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "List Event By Repos",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/repos/1/events",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"repos",
-										"1",
-										"events"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Listar Peliculas",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/disney/pelicula/peliculas",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"disney",
-										"pelicula",
-										"peliculas"
 									]
 								}
 							},

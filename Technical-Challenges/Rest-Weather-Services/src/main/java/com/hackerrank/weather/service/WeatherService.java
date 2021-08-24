@@ -1,11 +1,13 @@
 package com.hackerrank.weather.service;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.hackerrank.weather.model.Weather;
 import com.hackerrank.weather.repository.WeatherRepository;
 
@@ -34,10 +36,16 @@ public class WeatherService implements IWeatherService{
 
 
 	@Override
-	public List<Weather> getConsultOrOptionalInfo (List<String> city) {
+	public List<Weather> getConsultOrOptionalInfo (List<String> city, Date date) {
 		if(city != null){
+			
 			return (List<Weather>) weatherRepository.findWeatherByCityInIgnoreCase(city);
-		}	
+			
+		}else if (date != null) {
+			
+			return (List<Weather>) weatherRepository.findWeatherByDate(date);			
+		}
+		
 		return (List<Weather>) weatherRepository.findAll();
 	}
 
