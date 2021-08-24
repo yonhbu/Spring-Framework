@@ -34,8 +34,8 @@ public class WeatherService implements IWeatherService{
 
 
 	@Override
-	public List<Weather> getConsult(List<String> city) {
-			return (List<Weather>) weatherRepository.findWeatherByCityIn(city);
+	public List<Weather> findWeatherByCityInIgnoreCase (List<String> city) {
+			return (List<Weather>) weatherRepository.findWeatherByCityInIgnoreCase(city);
 
 	}
 

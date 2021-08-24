@@ -13,8 +13,8 @@ public interface WeatherRepository extends JpaRepository<Weather, Integer> {
 	
 	Optional<Weather> findById(Integer id);
 	
-	@Query("SELECT w FROM Weather w WHERE w.city IN :city")
-	List<Weather> findWeatherByCityIn(@Param("city") List<String> city);
+	//@Query("SELECT w FROM Weather w WHERE w.city IN :city")
+	List<Weather> findWeatherByCityInIgnoreCase (List<String> city);
 	
 	//I can do it also this
 	//List<Weather> findWeatherByCityIn(List<String> city);

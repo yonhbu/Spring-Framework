@@ -69,7 +69,7 @@ public class WeatherApiRestController {
 	@GetMapping("/weather")
 	public ResponseEntity<List<Weather>> consultWeathersOptionalInfo (@RequestParam(required = false) List<String> city) {
 		
-		return new ResponseEntity<>(weatherService.getConsult(city), HttpStatus.OK);
+		return new ResponseEntity<>(weatherService.findWeatherByCityInIgnoreCase(city), HttpStatus.OK);
 	}
 
 }
