@@ -16,8 +16,8 @@ public interface WeatherRepository extends JpaRepository<Weather, Integer> {
 	//@Query("SELECT w FROM Weather w WHERE w.city IN :city")
 	List<Weather> findWeatherByCityInIgnoreCase (List<String> city);
 	
-	@Query("SELECT w FROM Weather w WHERE w.date = date")
-	List<Weather> findWeatherByDate (Date date);
+	@Query("SELECT w FROM Weather w WHERE w.date IN :date")
+	List<Weather> findWeatherByDateIn (List<Date> date);
 	
 	//I can do it also this
 	//List<Weather> findWeatherByCityIn(List<String> city);

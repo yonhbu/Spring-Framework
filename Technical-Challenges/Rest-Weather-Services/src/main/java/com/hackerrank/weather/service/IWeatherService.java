@@ -10,7 +10,7 @@ import com.hackerrank.weather.model.Weather;
 
 public interface IWeatherService {
 	
-	public List<Weather> getConsultOrOptionalInfo  (List<String> cityList, Date date);
+	public List<Weather> getConsultOrOptionalInfo  (List<String> cityList,  List<Date> date);
 	
 	public Weather create_Weather (Weather weather);
 	

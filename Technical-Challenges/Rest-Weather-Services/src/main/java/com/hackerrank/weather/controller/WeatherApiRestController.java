@@ -68,7 +68,7 @@ public class WeatherApiRestController {
 
 	@GetMapping("/weather")
 	public ResponseEntity<List<Weather>> getConsultOrOptionalInfo (@RequestParam(required = false) List<String> city, 
-		                                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+		                                                           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) @RequestParam(required = false) List<Date> date) {
 		
 		return new ResponseEntity<>(weatherService.getConsultOrOptionalInfo(city,date), HttpStatus.OK);
 	}

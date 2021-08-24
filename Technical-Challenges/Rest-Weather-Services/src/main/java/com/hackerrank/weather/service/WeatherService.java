@@ -36,14 +36,14 @@ public class WeatherService implements IWeatherService{
 
 
 	@Override
-	public List<Weather> getConsultOrOptionalInfo (List<String> city, Date date) {
+	public List<Weather> getConsultOrOptionalInfo (List<String> city, List<Date> date) {
 		if(city != null){
 			
 			return (List<Weather>) weatherRepository.findWeatherByCityInIgnoreCase(city);
 			
 		}else if (date != null) {
 			
-			return (List<Weather>) weatherRepository.findWeatherByDate(date);			
+			return (List<Weather>) weatherRepository.findWeatherByDateIn(date);			
 		}
 		
 		return (List<Weather>) weatherRepository.findAll();
