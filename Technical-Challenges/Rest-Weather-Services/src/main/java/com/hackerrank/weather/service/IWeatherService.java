@@ -9,7 +9,7 @@ import com.hackerrank.weather.model.Weather;
 
 public interface IWeatherService {
 	
-	public List<Weather> findWeatherByCityInIgnoreCase  (List<String> cityList);
+	public List<Weather> getConsultOrOptionalInfo  (List<String> cityList);
 	
 	public Weather create_Weather (Weather weather);
 	

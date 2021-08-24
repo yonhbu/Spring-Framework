@@ -34,9 +34,11 @@ public class WeatherService implements IWeatherService{
 
 
 	@Override
-	public List<Weather> findWeatherByCityInIgnoreCase (List<String> city) {
+	public List<Weather> getConsultOrOptionalInfo (List<String> city) {
+		if(city != null){
 			return (List<Weather>) weatherRepository.findWeatherByCityInIgnoreCase(city);
-
+		}	
+		return (List<Weather>) weatherRepository.findAll();
 	}
 
 
