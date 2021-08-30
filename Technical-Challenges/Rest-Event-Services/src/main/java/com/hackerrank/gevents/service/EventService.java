@@ -15,6 +15,7 @@ import com.hackerrank.gevents.repository.EventRepository;
 import lombok.extern.slf4j.Slf4j;
 
 
+
 @Service
 @Slf4j
 public class EventService implements IEventService{
@@ -132,6 +133,10 @@ public class EventService implements IEventService{
 	}
 		return filtroEventByUser;
 
+	}
+	
+	public List<Event> getConsultByisPublicEvent (Boolean ispublic) {
+		return (List<Event>) eventRepository.findEventByisPublic(ispublic);
 	}
 
 	

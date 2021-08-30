@@ -1,6 +1,7 @@
 package com.hackerrank.gevents.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hackerrank.gevents.dto.EventRequestDTO;
@@ -19,6 +21,7 @@ import com.hackerrank.gevents.model.Event;
 import com.hackerrank.gevents.service.EventService;
 
 import lombok.extern.slf4j.Slf4j;
+
 
 @RestController
 @Slf4j
@@ -43,9 +46,20 @@ public class EventController {
 
 	}
 	
+
+	
 	@GetMapping("/events")
-	public ResponseEntity<List<Event>> getUsuarios () {
-		return new ResponseEntity<> (eventService.find_Event(), HttpStatus.OK);
+	public ResponseEntity<List<Event>> getUsuarios (@RequestParam Optional<Boolean> ispublic) {
+		
+		if(ispublic.isPresent()) {
+
+			return new ResponseEntity<>(eventService.getConsultByisPublicEvent(ispublic.get()), HttpStatus.OK);
+
+		} else {
+			return new ResponseEntity<> (eventService.find_Event(), HttpStatus.OK);
+		}
+
+		
 	}
 	
 	

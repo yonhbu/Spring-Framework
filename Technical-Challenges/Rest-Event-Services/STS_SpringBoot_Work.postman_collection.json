@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "12d55993-5836-48b8-8771-d550c8397fa0",
-		"name": "STS_SpringBoot_Work Copy",
+		"_postman_id": "a03c221f-68b6-4d76-a488-1702e4f3ad6d",
+		"name": "STS_SpringBoot_Work",
 		"description": "Esta coleccio comprende todos los endpoint para consumir cada una de los ejercicios y pruebas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
