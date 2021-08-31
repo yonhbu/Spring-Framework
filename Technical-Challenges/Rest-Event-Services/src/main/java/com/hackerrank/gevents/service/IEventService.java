@@ -19,4 +19,6 @@ public interface IEventService {
 	
 	public Optional<Event> getConsulEventById(Integer id);
 	
+	public Event updateEvent (Integer id, Event event);
+	
 }

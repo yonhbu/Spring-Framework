@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.hackerrank.gevents.exception.ValidType;
 import com.hackerrank.gevents.model.Event;
 import com.hackerrank.gevents.repository.EventRepository;
-
+import com.hackerrank.gevents.exception.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -137,6 +137,34 @@ public class EventService implements IEventService{
 	
 	public List<Event> getConsultByisPublicEvent (Boolean ispublic) {
 		return (List<Event>) eventRepository.findEventByisPublic(ispublic);
+	}
+	
+	
+	
+	 public void delete_Event (Integer id){
+	        try{
+	        	eventRepository.deleteById(id);
+	        }catch(Exception err){
+	        	
+	        }
+	        
+	    }
+
+	@Override
+	public Event updateEvent (Integer id, Event event) {
+		
+		Event eventInfo = eventRepository.findEventById(id);
+	
+        if (eventInfo == null) {
+            throw new ResourceNotFoundException(Event.class, id);
+        }
+        eventInfo.setType(event.getType());
+        eventInfo.setIsPublic(event.getIsPublic());
+        eventInfo.setActorId(event.getActorId());
+        eventInfo.setRepoId(event.getRepoId());
+        
+        eventRepository.save(eventInfo);
+        return eventInfo;
 	}
 
 	
