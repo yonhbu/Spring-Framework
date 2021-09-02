@@ -112,29 +112,29 @@ public class EventController {
 	}
 
 
-	@DeleteMapping("/events/{eventId}")
-	public ResponseEntity<String> deleteEmployee (@PathVariable ("eventId") Integer eventId) {
-		try {
-			eventService.delete_Event(eventId);
-			log.info("Request received for event deletion with id=" + eventId);
-			return new ResponseEntity<>("Event Delete Success", HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>("Event cannot deleted", HttpStatus.OK);
-		}
+//	@DeleteMapping("/events/{eventId}")
+//	public ResponseEntity<String> deleteEmployee (@PathVariable ("eventId") Integer eventId) {
+//		try {
+//			eventService.delete_Event(eventId);
+//			log.info("Request received for event deletion with id=" + eventId);
+//			return new ResponseEntity<>("Event Delete Success", HttpStatus.OK);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>("Event cannot deleted", HttpStatus.OK);
+//		}
+//
+//	}
 
-	}
 
-
-	@PutMapping("/events/{eventId}")
-	public ResponseEntity<Event> updateEvent (@PathVariable ("eventId") Integer eventId, @Valid @RequestBody Event event){
-		
-        log.info("updateEvent() - start: id = {}, event = {}", eventId, event);
-        
-        return ResponseEntity.ok(eventService.updateEvent(eventId, event));
-        
-        
-        
-	}
+//	@PutMapping("/events/{eventId}")
+//	public ResponseEntity<Event> updateEvent (@PathVariable ("eventId") Integer eventId, @RequestBody Event event){
+//		
+//        log.info("updateEvent() - start: id = {}, event = {}", eventId, event);
+//        
+//        return ResponseEntity.ok(eventService.updateEvent(eventId, event));
+//        
+//        
+//        
+//	}
        
     }
 

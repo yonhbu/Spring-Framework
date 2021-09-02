@@ -1,5 +1,7 @@
 package com.hackerrank.gevents.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +14,9 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="Event")
-public class Event {
+public class Event implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	
 	@Id()
