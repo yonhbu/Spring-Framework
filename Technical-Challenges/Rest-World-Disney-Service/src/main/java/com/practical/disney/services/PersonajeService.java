@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.practical.disney.dto.PersonajeRSDTO;
 import com.practical.disney.model.Personaje;
 import com.practical.disney.repository.IPersonajeRepository;
 

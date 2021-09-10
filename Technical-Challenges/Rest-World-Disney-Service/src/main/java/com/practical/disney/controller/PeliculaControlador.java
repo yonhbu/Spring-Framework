@@ -16,15 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.practical.disney.dto.PeliculaDTO;
-import com.practical.disney.dto.PersonajeRQDTO;
 import com.practical.disney.model.Pelicula;
-import com.practical.disney.model.Personaje;
 import com.practical.disney.services.PeliculaService;
-import com.practical.disney.services.PersonajeService;
-
 import lombok.extern.slf4j.Slf4j;
+
 
 @RestController
 @RequestMapping("/disney/pelicula")

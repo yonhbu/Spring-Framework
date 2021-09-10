@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.practical.disney.dto.PersonajeRQDTO;
-import com.practical.disney.dto.PersonajeRSDTO;
 import com.practical.disney.model.Personaje;
 import com.practical.disney.services.PersonajeService;
 
