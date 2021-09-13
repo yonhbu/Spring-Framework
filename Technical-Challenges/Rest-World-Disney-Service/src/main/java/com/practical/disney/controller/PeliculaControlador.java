@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.practical.disney.dto.PeliculaDTO;
 import com.practical.disney.model.Pelicula;
 import com.practical.disney.services.PeliculaService;
+
 import lombok.extern.slf4j.Slf4j;
 
 

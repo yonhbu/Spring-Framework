@@ -1,18 +1,16 @@
-package com.practical.disney.model;
+package com.hackerrank.market.model;
+
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,23 +22,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="Genero")
-public class Genero {
+@Table(name="Categoria")
+public class Categoria {
 	
+	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "idGenero")
-	@Id
-	private Long idgenero;
-
-	private String nombre;
+	@Column (name = "id_categoria")
+	private Integer idCategoria;
 	
-  //private String image;
-
-    @JsonManagedReference
-    @OneToMany(mappedBy = "genero",fetch=FetchType.LAZY, cascade = CascadeType.ALL)    
-	private List<Pelicula> peliculaAsociada;
-    
-    
-    
+	private String descripcion;
+	private Boolean estado;
+	
 
 }

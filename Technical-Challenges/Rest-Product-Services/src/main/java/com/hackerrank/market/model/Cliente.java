@@ -1,10 +1,14 @@
 package com.hackerrank.market.model;
 
+
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -18,17 +22,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="Usuario")
-public class Usuario {
+@Table(name="Cliente")
+public class Cliente {
 	
 	@Id()
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "idUsuario")
-	private int id;
+	private String id;
 	
-	@NotBlank
-	@Column (name = "Nombre")
 	private String nombre;
+	private String apellidos;
+	private Long celular;
+	private String direccion;
+	private String email;
+	
+	
+	//Relacion uno a Muchos (Clientes con Compras)
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Compra> listaCompras;
+	
 	
 
 

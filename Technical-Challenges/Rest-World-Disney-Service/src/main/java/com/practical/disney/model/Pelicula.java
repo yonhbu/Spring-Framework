@@ -48,6 +48,15 @@ public class Pelicula  {
     @JsonBackReference
     @ManyToMany(fetch=FetchType.LAZY,  mappedBy = "peliculaID", cascade = CascadeType.ALL)
     private List<Personaje> personajeAsociado;
+    
+    
+    @JsonBackReference
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name="idgenero")
+    private Genero genero;
+    
+    
+    
 
 
 }
