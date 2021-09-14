@@ -7,7 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,7 +40,7 @@ public class MarketControlador {
 	private ModelMapper modelMapper;
 	
 	
-    @GetMapping("/all")
+	@GetMapping("/allProduct")
     @ResponseStatus(HttpStatus.OK)
 	public List<Producto> getAll () {
 		return productoService.getAll();
@@ -53,11 +55,49 @@ public class MarketControlador {
 	}
 	
 	
+	@GetMapping("/product/{productoId}")
+	public ResponseEntity<Producto> getProductoById (@PathVariable("productoId") int productoId) {
+		
+		return productoService.getProducto(productoId)
+				.map(produc -> new ResponseEntity<> (produc, HttpStatus.OK))
+				.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		
+	}
+	
+	
+	 @DeleteMapping("/product/delete/{id}")
+	    public ResponseEntity<?> delete (@PathVariable("id") int productId) {
+	    	
+	    	if (productoService.deleteProducto(productId)) {
+	    		return new ResponseEntity<>(HttpStatus.OK);
+	    	} else {
+	    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    	}
+	    	
+	    }
+	
+	
 	@PostMapping("/category")
 	public ResponseEntity<Void> saveCategoria(@RequestBody CategoriaDTO categoriaDTO) {
 		categoriaService.crear_Categoria(modelMapper.map(categoriaDTO, Categoria.class));
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
+
+	
+	@GetMapping("/category/{categoryId}")
+	public ResponseEntity<List<Producto>> getCategoryById (@PathVariable("categoryId") int categoryId) {
+		return productoService.getByCategoria(categoryId)
+				.map(product -> new ResponseEntity<>(product, HttpStatus.OK))
+				.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		
+	}
+	
+    @GetMapping("/allCategory")
+    @ResponseStatus(HttpStatus.OK)
+	public List<Categoria> getAllCategory () {
+		return categoriaService.getAll();
+	}
+	
 
 
 }

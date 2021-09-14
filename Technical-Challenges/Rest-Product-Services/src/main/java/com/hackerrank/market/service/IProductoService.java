@@ -14,7 +14,7 @@ public interface IProductoService {
 	
 	public List<Producto> getAll ();
 	
-	public List<Producto> getByCategoria (int idCategoria);
+	public Optional<List<Producto>> getByCategoria (int idCategoria);
 	
 	public List<Producto> getByCategoriaOrderByName (int idCategoria);
 	
@@ -22,7 +22,7 @@ public interface IProductoService {
 	
 	public Optional<Producto> getProducto (int idProducto);
 	
-	public void deleteProducto (int idProducto);
+	public boolean deleteProducto (int idProducto);
 
 	
 

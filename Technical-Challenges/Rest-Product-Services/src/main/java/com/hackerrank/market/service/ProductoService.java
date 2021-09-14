@@ -27,7 +27,7 @@ public class ProductoService implements IProductoService{
 	}
 
 	@Override
-	public List<Producto> getByCategoria(int idCategoria) {
+	public Optional<List<Producto>> getByCategoria(int idCategoria) {
 		return iUsuarioRepository.findByIdCategoria(idCategoria);
 	}
 
@@ -47,12 +47,15 @@ public class ProductoService implements IProductoService{
 	}
 
 	@Override
-	public void deleteProducto(int idProducto) {
-		 iUsuarioRepository.deleteById(idProducto);
+	public boolean deleteProducto(int idProducto) {
+		
+		return getProducto(idProducto).map(producto -> {
+			iUsuarioRepository.deleteById(idProducto);
+			return true;
+		}).orElse(false);
+				
 		
 	}
-
-
 
 	
 }
