@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hackerrank.market.dto.CategoriaDTO;
-import com.hackerrank.market.dto.ProductoDTO;
+import com.hackerrank.market.dto.RequestCategoriaDTO;
+import com.hackerrank.market.dto.RequestCompraDTO;
+import com.hackerrank.market.dto.RequestProductoDTO;
 import com.hackerrank.market.model.Categoria;
+import com.hackerrank.market.model.Compra;
 import com.hackerrank.market.model.Producto;
 import com.hackerrank.market.service.CategoriaService;
+import com.hackerrank.market.service.CompraService;
 import com.hackerrank.market.service.ProductoService;
 
 
@@ -37,6 +40,9 @@ public class MarketControlador {
 	private CategoriaService categoriaService;
 	
 	@Autowired
+	private CompraService compraService;
+	
+	@Autowired
 	private ModelMapper modelMapper;
 	
 	
@@ -49,7 +55,7 @@ public class MarketControlador {
    
     
 	@PostMapping("/product")
-	public ResponseEntity<Void> saveProducts(@RequestBody ProductoDTO productoDTO) {
+	public ResponseEntity<Void> saveProducts(@RequestBody RequestProductoDTO productoDTO) {
 		productoService.crear_Producto(modelMapper.map(productoDTO, Producto.class));
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
@@ -78,7 +84,7 @@ public class MarketControlador {
 	
 	
 	@PostMapping("/category")
-	public ResponseEntity<Void> saveCategoria(@RequestBody CategoriaDTO categoriaDTO) {
+	public ResponseEntity<Void> saveCategoria(@RequestBody RequestCategoriaDTO categoriaDTO) {
 		categoriaService.crear_Categoria(modelMapper.map(categoriaDTO, Categoria.class));
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
@@ -97,7 +103,26 @@ public class MarketControlador {
 	public List<Categoria> getAllCategory () {
 		return categoriaService.getAll();
 	}
+    
+    
+    
+	@PostMapping("/compra")
+	public ResponseEntity<Void> saveCompra (@RequestBody Compra requestCompraDTO) {
+		compraService.crear_Compra(requestCompraDTO);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
 	
+	
+    
+    @GetMapping("/allCompras")
+    @ResponseStatus(HttpStatus.OK)
+	public List<Compra> getAllCompras () {
+		return compraService.getAll();
+	}
+	
+	
+    
+    
 
 
 }

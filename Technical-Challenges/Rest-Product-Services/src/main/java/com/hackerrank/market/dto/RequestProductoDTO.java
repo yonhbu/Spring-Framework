@@ -8,7 +8,7 @@ import com.hackerrank.market.model.Categoria;
 import lombok.Data;
 
 @Data
-public class ProductoDTO implements Serializable {
+public class RequestProductoDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	

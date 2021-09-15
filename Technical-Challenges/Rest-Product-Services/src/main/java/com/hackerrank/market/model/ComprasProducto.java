@@ -5,8 +5,8 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,15 +26,16 @@ public class ComprasProducto {
 	
 	private Integer cantidad;
 	private Double total;
-	private Boolean estado;
+	private String estado;
 	
 	@ManyToOne
-	@JoinColumn (name = "idCompra", insertable = false, updatable = false)
+	@MapsId("idCompra")
+	@JoinColumn (name = "id_compra", insertable = false, updatable = false)
 	private Compra compra;
 	
 	
 	@ManyToOne
-	@JoinColumn (name = "idProducto", insertable = false, updatable = false)
+	@JoinColumn (name = "id_producto", insertable = false, updatable = false)
 	private Producto producto;
 	
 

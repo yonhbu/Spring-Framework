@@ -1,6 +1,8 @@
 package com.hackerrank.market.model;
 
 
+
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -33,5 +33,7 @@ public class Categoria {
 	private String descripcion;
 	private Boolean estado;
 	
+	@OneToMany(mappedBy = "categoria")
+	private List<Producto> listaProductos;
 
 }

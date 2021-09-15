@@ -6,7 +6,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class CategoriaDTO implements Serializable {
+public class RequestCategoriaDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 

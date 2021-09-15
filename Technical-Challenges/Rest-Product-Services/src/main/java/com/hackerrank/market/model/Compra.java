@@ -3,6 +3,7 @@ package com.hackerrank.market.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,26 +29,29 @@ public class Compra {
 	
 	@Id()
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "idCompra")
-	private int id;
+	@Column (name = "id_compra")
+	private Integer idCompra;
 	
+	@Column (name = "id_cliente")
 	private String idCliente;
+	
 	private LocalDateTime fecha;
-	private char medio_de_Pago;
+	
+	@Column (name = "medio_pago")
+	private String medioPago;
+	
 	private String comentario;
-	private String estado;
+	
+	private String estado; //Si la orden ya se pago o no
 	
 	@ManyToOne
-	@JoinColumn(name = "idCliente", insertable = false, updatable = false)
+	@JoinColumn(name = "id_cliente", insertable = false, updatable = false)
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy = "compra")
-	private List<ComprasProducto> comprasProducto;
+	@OneToMany(mappedBy = "producto", cascade = {CascadeType.ALL})
+	private List<ComprasProducto> productos;
 	
 
-	
-	
-	
 
 
 }
