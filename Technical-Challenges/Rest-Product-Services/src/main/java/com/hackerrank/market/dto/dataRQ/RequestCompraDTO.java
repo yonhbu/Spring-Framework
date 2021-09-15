@@ -13,7 +13,7 @@ public class RequestCompraDTO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-	//private String idCliente;
+	private String idCliente;
 	private LocalDateTime fecha;
 	private String medioPago;
 	private String comentario;

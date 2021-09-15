@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 public class Cliente {
 	
 	@Id()
-	@Column (name = "id_cliente")
-	private String id;
+	@Column (name = "cliente_id")
+	private String idCliente;
 	
 	private String nombre;
 	

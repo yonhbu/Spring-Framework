@@ -17,14 +17,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hackerrank.market.dto.dataRQ.RequestCategoriaDTO;
+import com.hackerrank.market.dto.dataRQ.RequestClienteDTO;
 import com.hackerrank.market.dto.dataRQ.RequestCompraDTO;
 import com.hackerrank.market.dto.dataRQ.RequestProductoDTO;
 import com.hackerrank.market.dto.dataRS.ResponseCategoriaDTO;
+import com.hackerrank.market.dto.dataRS.ResponseClienteDTO;
 import com.hackerrank.market.dto.dataRS.ResponseProductoDTO;
 import com.hackerrank.market.model.Categoria;
+import com.hackerrank.market.model.Cliente;
 import com.hackerrank.market.model.Compra;
 import com.hackerrank.market.model.Producto;
 import com.hackerrank.market.service.CategoriaService;
+import com.hackerrank.market.service.ClienteService;
 import com.hackerrank.market.service.CompraService;
 import com.hackerrank.market.service.ProductoService;
 
@@ -43,6 +47,9 @@ public class MarketControlador {
 	
 	@Autowired
 	private CompraService compraService;
+	
+	@Autowired
+	private ClienteService clienteService;
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -122,6 +129,28 @@ public class MarketControlador {
 	}
     
     
+    
+    @PostMapping("/cliente")
+	public ResponseEntity<ResponseClienteDTO> saveCliente (@RequestBody RequestClienteDTO requestClienteDTO) {
+
+		// convert DTO to entity
+		Cliente clienteRequest = modelMapper.map(requestClienteDTO, Cliente.class);
+		Cliente cliente = clienteService.crear_Cliente(clienteRequest);
+
+		// convert entity to DTO
+		ResponseClienteDTO clienteResponse = modelMapper.map(cliente, ResponseClienteDTO.class);
+		return new ResponseEntity<>(clienteResponse, HttpStatus.OK);
+		
+		
+		
+	}
+    
+    
+    @GetMapping("/allClientes")
+    @ResponseStatus(HttpStatus.OK)
+	public List<ResponseClienteDTO> getAllCliente () {
+		return clienteService.getAll();
+	}
     
 
     

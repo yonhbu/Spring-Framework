@@ -36,7 +36,7 @@ public class Compra {
 	private String idCliente;
 	
 	private LocalDateTime fecha;
-	
+	  
 	@Column (name = "medio_pago")
 	private String medioPago;
 	
@@ -45,7 +45,7 @@ public class Compra {
 	private String estado; //Si la orden ya se pago o no
 	
 	@ManyToOne
-	@JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+	@JoinColumn(name = "cliente_id", insertable = false, updatable = false)
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "compra", cascade = {CascadeType.ALL})
