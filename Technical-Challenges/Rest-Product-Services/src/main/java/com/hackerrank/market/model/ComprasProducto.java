@@ -30,7 +30,7 @@ public class ComprasProducto {
 	private String estado;
 	
 	@ManyToOne
-    @MapsId("idCompra")
+    @MapsId("idCompras")
 	@JoinColumn (name = "id_compra", insertable = false, updatable = false)
 	private Compra compra;
 	

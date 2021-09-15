@@ -45,7 +45,7 @@ public class Compra {
 	private String estado; //Si la orden ya se pago o no
 	
 	@ManyToOne
-	@JoinColumn(name = "cliente_id", insertable = false, updatable = false)
+	@JoinColumn(name = "id_cliente", insertable = false, updatable = false)
 	private Cliente cliente;
 	
 	@OneToMany(mappedBy = "compra", cascade = {CascadeType.ALL})

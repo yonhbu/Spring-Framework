@@ -33,7 +33,7 @@ public class Producto {
 	private String nombre;
 	
 	@Column (name = "id_categoria")
-	private int idCategoria;
+	private Integer idCategoria;
 	
 	@Column (name = "codigo_barras")
 	private String codigoBarras;
