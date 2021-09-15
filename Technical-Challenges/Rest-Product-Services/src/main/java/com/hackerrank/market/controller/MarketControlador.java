@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hackerrank.market.dto.RequestCategoriaDTO;
-import com.hackerrank.market.dto.RequestCompraDTO;
 import com.hackerrank.market.dto.RequestProductoDTO;
 import com.hackerrank.market.model.Categoria;
 import com.hackerrank.market.model.Compra;
