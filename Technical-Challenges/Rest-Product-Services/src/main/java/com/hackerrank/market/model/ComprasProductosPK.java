@@ -19,10 +19,10 @@ public class ComprasProductosPK implements Serializable { //Clase con primary ke
 	private static final long serialVersionUID = 1L;
 	
 	@Column (name = "id_compra")
-	private Integer idCompra;
+	private Integer idCompras;
 	
 	@Column (name = "id_producto")
-	private Integer idProducto;
+	private Integer idProductos;
 	
 
 

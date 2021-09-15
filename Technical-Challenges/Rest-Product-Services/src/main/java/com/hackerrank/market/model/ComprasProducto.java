@@ -17,19 +17,20 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @AllArgsConstructor
 @NoArgsConstructor
+
 @Entity
 @Table(name="Compras_Producto")
 public class ComprasProducto {
 	
 	@EmbeddedId
 	private ComprasProductosPK id;  // Instanciamos la clase que tiene primary key compuesta
-	
+
 	private Integer cantidad;
 	private Double total;
 	private String estado;
 	
 	@ManyToOne
-	@MapsId("idCompra")
+    @MapsId("idCompra")
 	@JoinColumn (name = "id_compra", insertable = false, updatable = false)
 	private Compra compra;
 	
