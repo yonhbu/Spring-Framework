@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import com.hackerrank.market.dto.RequestCategoriaDTO;
-import com.hackerrank.market.dto.RequestProductoDTO;
+
+import com.hackerrank.market.dto.dataRQ.RequestCategoriaDTO;
+import com.hackerrank.market.dto.dataRQ.RequestCompraDTO;
+import com.hackerrank.market.dto.dataRQ.RequestProductoDTO;
+import com.hackerrank.market.dto.dataRS.ResponseCategoriaDTO;
+import com.hackerrank.market.dto.dataRS.ResponseProductoDTO;
 import com.hackerrank.market.model.Categoria;
 import com.hackerrank.market.model.Compra;
 import com.hackerrank.market.model.Producto;
@@ -53,9 +57,16 @@ public class MarketControlador {
    
     
 	@PostMapping("/product")
-	public ResponseEntity<Void> saveProducts(@RequestBody RequestProductoDTO productoDTO) {
-		productoService.crear_Producto(modelMapper.map(productoDTO, Producto.class));
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+	public ResponseEntity<ResponseProductoDTO> saveProducts(@RequestBody RequestProductoDTO productoDTO) {
+		
+		// convert DTO to entity
+		Producto productoRequest = modelMapper.map(productoDTO, Producto.class);
+		Producto producto =	productoService.crear_Producto(productoRequest);
+
+		// convert entity to DTO
+		ResponseProductoDTO productoResponse = modelMapper.map(producto, ResponseProductoDTO.class);
+		return new ResponseEntity<>(productoResponse, HttpStatus.OK);
+		
 	}
 	
 	
@@ -70,21 +81,29 @@ public class MarketControlador {
 	
 	
 	 @DeleteMapping("/product/delete/{id}")
-	    public ResponseEntity<?> delete (@PathVariable("id") int productId) {
+	    public ResponseEntity<String> delete (@PathVariable("id") int productId) {
 	    	
 	    	if (productoService.deleteProducto(productId)) {
-	    		return new ResponseEntity<>(HttpStatus.OK);
+	    		return new ResponseEntity<>("Producto Eliminado Exitosamente", HttpStatus.OK);
 	    	} else {
-	    		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    		return new ResponseEntity<>("Producto No Encontrado",HttpStatus.NOT_FOUND);
 	    	}
 	    	
 	    }
 	
 	
 	@PostMapping("/category")
-	public ResponseEntity<Void> saveCategoria(@RequestBody RequestCategoriaDTO categoriaDTO) {
-		categoriaService.crear_Categoria(modelMapper.map(categoriaDTO, Categoria.class));
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+	public ResponseEntity<ResponseCategoriaDTO> saveCategoria(@RequestBody RequestCategoriaDTO categoriaDTO) {
+
+		// convert DTO to entity
+		Categoria categoriaRequest = modelMapper.map(categoriaDTO, Categoria.class);
+		Categoria categoria = categoriaService.crear_Categoria(categoriaRequest);
+
+		// convert entity to DTO
+		ResponseCategoriaDTO categoriaResponse = modelMapper.map(categoria, ResponseCategoriaDTO.class);
+		return new ResponseEntity<>(categoriaResponse, HttpStatus.OK);
+		
+		
 	}
 
 	
@@ -104,12 +123,22 @@ public class MarketControlador {
     
     
     
+
+    
 	@PostMapping("/compra")
-	public ResponseEntity<Void> saveCompra (@RequestBody Compra requestCompraDTO) {
-		compraService.crear_Compra(requestCompraDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+	public ResponseEntity<RequestCompraDTO> saveCompra (@RequestBody RequestCompraDTO requestCompraDTO) {
+
+		// convert DTO to entity
+		Compra compraRequest = modelMapper.map(requestCompraDTO, Compra.class);
+		Compra compra = compraService.crear_Compra(compraRequest);
+
+		// convert entity to DTO
+		RequestCompraDTO compraResponse = modelMapper.map(compra, RequestCompraDTO.class);
+		return new ResponseEntity<>(compraResponse, HttpStatus.OK);
+		
+		
+		
 	}
-	
 	
     
     @GetMapping("/allCompras")

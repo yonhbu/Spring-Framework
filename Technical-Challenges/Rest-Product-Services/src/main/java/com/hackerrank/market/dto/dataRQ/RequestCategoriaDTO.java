@@ -1,4 +1,4 @@
-package com.hackerrank.market.dto;
+package com.hackerrank.market.dto.dataRQ;
 
 
 import java.io.Serializable;
