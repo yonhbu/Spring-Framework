@@ -13,7 +13,7 @@ public class ResponseProductoDTO implements Serializable {
 	
 	private Integer idProducto;
 	private String nombre;
-	private int idCategoria;
+	private Integer categoriaProducto;
 	private String codigoBarras;
 	private Double precioVenta;
 	private int cantidadStock;

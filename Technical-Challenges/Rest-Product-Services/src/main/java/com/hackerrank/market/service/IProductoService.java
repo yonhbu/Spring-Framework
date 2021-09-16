@@ -14,9 +14,9 @@ public interface IProductoService {
 	
 	public List<Producto> getAll ();
 	
-	public Optional<List<Producto>> getByCategoria (int idCategoria);
+	public Optional<List<Producto>> getByCategoria (int categoriaProducto);
 	
-	public List<Producto> getByCategoriaOrderByName (int idCategoria);
+	public List<Producto> getByCategoriaOrderByName (int categoriaProducto);
 	
 	public Optional<List<Producto>> getEscasos (int cantidad, boolean estado);
 	

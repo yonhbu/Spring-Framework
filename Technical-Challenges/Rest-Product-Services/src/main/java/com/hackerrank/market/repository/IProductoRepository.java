@@ -12,9 +12,9 @@ import com.hackerrank.market.model.Producto;
 @Repository
 public interface IProductoRepository extends CrudRepository<Producto, Integer>{
 	
-	Optional<List<Producto>> findByIdCategoria (int idCategoria);
+	Optional<List<Producto>> findByCategoriaProducto (int categoriaProducto);
 	
-	List<Producto> findByIdCategoriaOrderByNombreAsc (int idCategoria);
+	List<Producto> findByCategoriaProductoOrderByNombreAsc (int categoriaProducto);
 	
 	Optional<List<Producto>> findByCantidadStockLessThanAndEstado (int cantidadStock, boolean estado);
 	

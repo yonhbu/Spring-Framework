@@ -27,13 +27,13 @@ public class ProductoService implements IProductoService{
 	}
 
 	@Override
-	public Optional<List<Producto>> getByCategoria(int idCategoria) {
-		return iUsuarioRepository.findByIdCategoria(idCategoria);
+	public Optional<List<Producto>> getByCategoria(int categoriaProducto) {
+		return iUsuarioRepository.findByCategoriaProducto(categoriaProducto);
 	}
 
 	@Override
-	public List<Producto> getByCategoriaOrderByName(int idCategoria) {
-		return iUsuarioRepository.findByIdCategoriaOrderByNombreAsc(idCategoria);
+	public List<Producto> getByCategoriaOrderByName(int categoriaProducto) {
+		return iUsuarioRepository.findByCategoriaProductoOrderByNombreAsc(categoriaProducto);
 	}
 
 	@Override

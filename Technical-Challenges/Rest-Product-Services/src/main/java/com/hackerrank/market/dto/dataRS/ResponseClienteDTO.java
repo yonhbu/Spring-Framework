@@ -11,7 +11,7 @@ public class ResponseClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	private String id;
+	private String idCliente;
 	private String nombre;
 	private String apellidos;
 	private Long celular;
