@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -46,9 +48,10 @@ public class Compra {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_cliente", insertable = false, updatable = false)
+	@JsonIgnoreProperties(value="idCliente")
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy = "compra", cascade = {CascadeType.ALL})
+	@OneToMany(mappedBy = "producto", cascade = {CascadeType.ALL})
 	private List<ComprasProducto> productos;
 	
 

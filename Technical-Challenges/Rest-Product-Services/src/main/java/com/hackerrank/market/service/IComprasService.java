@@ -14,7 +14,7 @@ public interface IComprasService {
 	
 	public List<Compra> getAll ();
 	
-	public Optional<List<Compra>> getByClient (String clientId);
+	public Optional<List<Compra>> getByClient (String idCliente);
 	
 
 

@@ -18,7 +18,7 @@ public class CompraService implements IComprasService{
 
 	@Override
 	public Compra crear_Compra(Compra compra) {
-		//compra.getProductos().forEach(producto -> producto.setCompra(compra));
+		compra.getProductos().forEach(producto -> producto.setCompra(compra));
 		return iComprasRepository.save(compra);
 	}
 

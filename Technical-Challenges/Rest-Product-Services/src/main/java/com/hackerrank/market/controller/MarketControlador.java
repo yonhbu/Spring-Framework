@@ -22,6 +22,7 @@ import com.hackerrank.market.dto.dataRQ.RequestCompraDTO;
 import com.hackerrank.market.dto.dataRQ.RequestProductoDTO;
 import com.hackerrank.market.dto.dataRS.ResponseCategoriaDTO;
 import com.hackerrank.market.dto.dataRS.ResponseClienteDTO;
+import com.hackerrank.market.dto.dataRS.ResponseCompraDTO;
 import com.hackerrank.market.dto.dataRS.ResponseProductoDTO;
 import com.hackerrank.market.model.Categoria;
 import com.hackerrank.market.model.Cliente;
@@ -152,17 +153,26 @@ public class MarketControlador {
 		return clienteService.getAll();
 	}
     
+    
+    
+	@GetMapping("/cliente/{clienteId}")
+	public ResponseEntity<List<Compra>> getCompraById (@PathVariable("clienteId") String clienteId) {
+		return compraService.getByClient(clienteId)
+				.map(compra -> new ResponseEntity<>(compra, HttpStatus.OK))
+				.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+		
+	}
 
     
 	@PostMapping("/compra")
-	public ResponseEntity<RequestCompraDTO> saveCompra (@RequestBody RequestCompraDTO requestCompraDTO) {
+	public ResponseEntity<ResponseCompraDTO> saveCompra (@RequestBody RequestCompraDTO requestCompraDTO) {
 
 		// convert DTO to entity
 		Compra compraRequest = modelMapper.map(requestCompraDTO, Compra.class);
 		Compra compra = compraService.crear_Compra(compraRequest);
 
 		// convert entity to DTO
-		RequestCompraDTO compraResponse = modelMapper.map(compra, RequestCompraDTO.class);
+		ResponseCompraDTO compraResponse = modelMapper.map(compra, ResponseCompraDTO.class);
 		return new ResponseEntity<>(compraResponse, HttpStatus.OK);
 		
 		

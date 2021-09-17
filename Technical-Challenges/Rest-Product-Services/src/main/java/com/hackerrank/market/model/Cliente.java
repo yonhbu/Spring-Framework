@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,8 +41,9 @@ public class Cliente {
 	
 	//Relacion uno a Muchos (Clientes con Compras)
 	
-	@OneToMany(mappedBy = "cliente")
-	private List<Compra> listaCompras;
+//	@OneToMany(mappedBy = "cliente")
+//	@JsonIgnoreProperties(value="listaCompras")
+//	private List<Compra> listaCompras;
 	
 	
 

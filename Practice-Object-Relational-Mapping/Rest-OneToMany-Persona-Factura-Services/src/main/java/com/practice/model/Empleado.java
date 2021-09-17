@@ -35,11 +35,13 @@ public class Empleado {
 	
 	private int edad;
 	
+	//RELACION UNO A  UNO BIDIRECCIONAL
 //	@OneToOne (cascade = CascadeType.ALL)
 //	@JoinColumn(name = "FK_id_direccion")
 //	private Direccion direccion;
 	
 	
+	//RELACION UNO A  MUCHOS BIDIRECCIONAL
 	@OneToMany (cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_id_direccion", referencedColumnName = "id_empleado")
 	private List<Direccion> direccion;

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.practice.model.Empleado;
-import com.practice.service.DireccionService;
 import com.practice.service.EmpleadoService;
 
 
@@ -19,7 +18,7 @@ import com.practice.service.EmpleadoService;
 
 
 @RestController
-public class RelationControlador {
+public class RelationEmployeeControlador {
 
 
 	@Autowired
