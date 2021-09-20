@@ -1,0 +1,87 @@
+{
+	"info": {
+		"_postman_id": "4e7e6d5a-0f0a-4c98-aa7e-ebaa68848db4",
+		"name": "STS_SpringBoot_Work Copy",
+		"description": "Esta coleccio comprende todos los endpoint para consumir cada una de los ejercicios y pruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tehcnical Exercise",
+			"item": [
+				{
+					"name": "Libreria",
+					"item": [
+						{
+							"name": "Crear Libro",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"isbn\": \"isbn-004\",\r\n   \"titulo\": [\r\n  {\r\n          \"nombre\": \"SpiderMan\"\r\n\r\n  }\r\n\r\n   ],\r\n    \"autor\": [\r\n  {\r\n          \"nombre\": \"Jackson\",\r\n          \"apellido\": \"Martinez\",\r\n          \"contacto\": {\r\n\r\n               \"email\": \"contacto@movie.com\",\r\n               \"telefono\": \"0057-5892\"\r\n\r\n                      }\r\n\r\n  }\r\n    ]\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/saveLibro",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"saveLibro"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Listas Todos los Libros",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/allLibros",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"allLibros"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Buscar Todos los Libros x Autor",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/allLibrosXAutor/Jackson",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"allLibrosXAutor",
+										"Jackson"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

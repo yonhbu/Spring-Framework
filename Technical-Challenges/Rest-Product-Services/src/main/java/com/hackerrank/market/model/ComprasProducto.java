@@ -8,7 +8,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,12 +32,12 @@ public class ComprasProducto {
 	
 	@ManyToOne
     @MapsId("idCompras")
-	@JoinColumn (name = "id_compra", insertable = false, updatable = false)
+	@JoinColumn (name = "id_compras", insertable = false, updatable = false)
 	private Compra compra;
 	
 	
 	@ManyToOne
-	@JoinColumn (name = "id_producto", insertable = false, updatable = false)
+	@JoinColumn (name = "id_productos", insertable = false, updatable = false)
 	private Producto producto;
 	
 
