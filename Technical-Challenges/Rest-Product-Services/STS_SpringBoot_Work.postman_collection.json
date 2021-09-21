@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "83e3288c-cab4-4695-be86-65fac6dea6d3",
-		"name": "STS_SpringBoot_Work Copy",
+		"_postman_id": "dbf60197-0262-4407-be6f-1112c56afe6c",
+		"name": "STS_SpringBoot_Work",
 		"description": "Esta coleccio comprende todos los endpoint para consumir cada una de los ejercicios y pruebas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,10 +13,45 @@
 					"name": "Productos",
 					"item": [
 						{
-							"name": "Crear Categoria",
+							"name": "Autenticacion",
 							"request": {
 								"method": "POST",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"user\": \"juan\",\r\n   \"pass\": \"pass123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/auth/authenticate",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"auth",
+										"authenticate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear Categoria",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNjMyMjM3NTAyLCJleHAiOjE2MzIyNzM1MDJ9.cBA7iK5fO9xymSaAbmSKob-RWghirfiTiaoNPNvP-EE",
+										"type": "text"
+									}
+								],
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n   \"descripcion\": \"Frutas y Verduras\",\r\n   \"estado\": true\r\n}",
@@ -45,7 +80,13 @@
 							"name": "List Todas las Categorias",
 							"request": {
 								"method": "GET",
-								"header": [],
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqdWFuIiwiaWF0IjoxNjMyMjM3NTAyLCJleHAiOjE2MzIyNzM1MDJ9.cBA7iK5fO9xymSaAbmSKob-RWghirfiTiaoNPNvP-EE",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "http://localhost:8000/market/allCategory",
 									"protocol": "http",
@@ -230,7 +271,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n   \"clienteComprador\": \"1020\",\r\n   \"fecha\": \"2021-09-14T13:40:00\",\r\n   \"medioPago\": \"Tarjeta de Credito\",\r\n   \"comentario\": \"Se realiza el credito a 1 Cuota\",\r\n   \"estado\": \"Pago\",\r\n   \"productos\": \r\n   [\r\n      {\r\n           \"id\": \r\n           {\r\n                \"idProductos\": 1\r\n           } ,\r\n    \r\n           \"cantidad\": 10,\r\n           \"total\": 2000,\r\n           \"estado\": true\r\n       }\r\n   ]\r\n \r\n}",
+									"raw": "{\r\n   \"clienteComprador\": \"1020\",\r\n   \"fecha\": \"2021-09-14T13:40:00\",\r\n   \"medioPago\": \"Tarjeta de Credito\",\r\n   \"comentario\": \"Se realiza el credito a 1 Cuota\",\r\n   \"estado\": \"Pago\",\r\n   \"productos\": \r\n   [\r\n       {  \r\n           \"idProducto\": 1,\r\n           \"cantidad\": 10,\r\n           \"total\": 2000,\r\n           \"estado\": true\r\n       }\r\n   ]\r\n \r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -247,27 +288,6 @@
 									"path": [
 										"market",
 										"compra"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Listar Compras By Cliente",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8000/market/cliente/1020",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8000",
-									"path": [
-										"market",
-										"cliente",
-										"1020"
 									]
 								}
 							},
