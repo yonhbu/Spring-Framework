@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "3f84b5b0-9d47-4feb-8c28-1b58d08492d7",
+		"name": "STS_SpringBoot_Work",
+		"description": "Esta coleccio comprende todos los endpoint para consumir cada una de los ejercicios y pruebas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tehcnical Exercise",
+			"item": [
+				{
+					"name": "Weather",
+					"item": [
+						{
+							"name": "Create Weather",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"date\": \"2019-06-12\",\r\n   \"lat\": 36.1189,\r\n   \"lon\": -86.6892,\r\n   \"city\": \"london\",\r\n   \"state\": \"Tennessee\",\r\n   \"temperatures\": [17.3, 16.8, 16.4, 16.0, 15.6, 15.3, 15.0, 14.9, 15.8, 18.0, 20.2, 22.3, 23.8, 24.9, 25.5, 25.7, 24.9, 23.0, 21.7, 20.8, 29.9, 29.2, 28.6, 28.1]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8000/weather",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Weather",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/weather",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Weather City",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/weather?city=London",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather"
+									],
+									"query": [
+										{
+											"key": "city",
+											"value": "London"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List All Weather Date",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/weather?date=2019-06-11",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather"
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2019-06-11"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Weather By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8000/weather/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"weather",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
