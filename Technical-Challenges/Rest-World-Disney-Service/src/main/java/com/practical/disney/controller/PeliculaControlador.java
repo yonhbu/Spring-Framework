@@ -25,7 +25,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/disney/pelicula")
-@Slf4j
 public class PeliculaControlador {
 
 	@Autowired
@@ -46,7 +45,6 @@ public class PeliculaControlador {
 
 	@GetMapping("/consultId/{id}")
 	public ResponseEntity<Pelicula> consulPeliculaID (@PathVariable("id") Long id) {
-		log.info("Request received for findById for id=" + id);
 		return new ResponseEntity<>(peliculaService.consultId(id),HttpStatus.OK);		
 
 	}
@@ -63,7 +61,6 @@ public class PeliculaControlador {
 
 		// convert entity to DTO
 		PeliculaDTO peliculaResponse = modelMapper.map(pelicula, PeliculaDTO.class);
-		log.info("Request received for pelicula insert", pelicula.toString());
 		return new ResponseEntity<>(peliculaResponse, HttpStatus.CREATED);
 
 	}
@@ -81,7 +78,6 @@ public class PeliculaControlador {
 
 		// convert entity to DTO
 		PeliculaDTO peliculaResponse = modelMapper.map(pelicula, PeliculaDTO.class);
-		log.info("Request received for pelicula insert", pelicula.toString());
 		return new ResponseEntity<>(peliculaResponse, HttpStatus.OK);
 
 	}
@@ -91,7 +87,6 @@ public class PeliculaControlador {
 	public ResponseEntity<String> deletePelicula (@PathVariable ("id") Long id) {
 		Pelicula pelicula = peliculaService.consultId(id);
 		peliculaService.delete(pelicula);
-		log.info("Request received for pelicula deletion with id=" + id);
 		return new ResponseEntity<>("Pelicula Eliminada", HttpStatus.OK);
 
 	}

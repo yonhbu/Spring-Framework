@@ -25,7 +25,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/disney/personaje")
-@Slf4j
 public class PersonajeControlador {
 
 	@Autowired
@@ -46,7 +45,6 @@ public class PersonajeControlador {
 
 	@GetMapping("/consultId/{id}")
 	public ResponseEntity<Personaje> consulPersonajeID (@PathVariable("id") Long id) {
-		log.info("Request received for findById for id=" + id);
 		return new ResponseEntity<>(personajeService.consultId(id),HttpStatus.OK);		
 
 	}
@@ -63,7 +61,6 @@ public class PersonajeControlador {
 
 		// convert entity to DTO
 		PersonajeRQDTO personajeResponse = modelMapper.map(personaje, PersonajeRQDTO.class);
-		log.info("Request received for personaje insert", personaje.toString());
 		return new ResponseEntity<>(personajeResponse, HttpStatus.CREATED);
 
 	}
@@ -81,7 +78,6 @@ public class PersonajeControlador {
 
 		// convert entity to DTO
 		PersonajeRQDTO personajeResponse = modelMapper.map(personaje, PersonajeRQDTO.class);
-		log.info("Request received for personaje update", personaje.toString());
 		return new ResponseEntity<>(personajeResponse, HttpStatus.OK);
 
 	}
@@ -91,7 +87,6 @@ public class PersonajeControlador {
 	public ResponseEntity<String> deletePersonaje (@PathVariable ("id") Long id) {
 		Personaje personaje = personajeService.consultId(id);
 		personajeService.delete(personaje);
-		log.info("Request received for personaje deletion with id=" + id);
 		return new ResponseEntity<>("Personaje Eliminado", HttpStatus.OK);
 
 	}
