@@ -41,12 +41,10 @@ public class EventController {
 
 		// convert DTO to entity
 		Event eventRequest = modelMapper.map(eventDTO, Event.class);
-		
 		Event event = eventService.create_Event(eventRequest);
 
 		// convert entity to DTO
 		EventResponseDTO eventResponse = modelMapper.map(event, EventResponseDTO.class);
-
 		return new ResponseEntity<>(eventResponse, HttpStatus.CREATED);
 
 	}
