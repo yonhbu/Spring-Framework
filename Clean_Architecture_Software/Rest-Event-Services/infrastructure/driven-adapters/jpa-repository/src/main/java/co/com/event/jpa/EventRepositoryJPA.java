@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface EventRepositoryJPA extends CrudRepository<EventDataJPA, Integer>, QueryByExampleExecutor<EventDataJPA> {
+public interface EventRepositoryJPA extends CrudRepository<EventDataJPA, Integer> {
 	
 	@Query("SELECT e FROM EventDataJPA e WHERE e.id = id")
 	EventDataJPA findEventDataJPAById(Integer id);

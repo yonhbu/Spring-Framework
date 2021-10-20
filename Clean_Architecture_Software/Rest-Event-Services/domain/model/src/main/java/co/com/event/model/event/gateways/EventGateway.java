@@ -13,19 +13,20 @@ public interface EventGateway {
 	
 	public List<Event> findEventbyUserId (Integer id);
 	
-	public Event createEvent (Event event);
+	public Optional<Event> findById(Integer id);
 	
-	public Optional<Event> getConsulEventById(Integer id);
+	public List<Event> findEventByisPublic(Boolean ispublic);
+
+	public Event findEventById(Integer id);
+	
+	public Event createEvent (Event event);
 	
 	public Event updateEvent (Integer id, Event event);
 
 	public void deleteById(Integer id);
 
-	public List<Event> findEventByisPublic(Boolean ispublic);
 
-	public Event findEventById(Integer id);
 
-	public Optional<Event> findById(Integer id);
 	
 	
 }

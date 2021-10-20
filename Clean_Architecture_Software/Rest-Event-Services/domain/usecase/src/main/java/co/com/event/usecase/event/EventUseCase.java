@@ -3,20 +3,17 @@ package co.com.event.usecase.event;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-
+import co.com.event.model.commons.ValidType;
 import co.com.event.model.event.Event;
 import co.com.event.model.event.gateways.EventGateway;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
-//@Slf4j
 public class EventUseCase {
-	
+
 	private final EventGateway eventRepository;
-	
+
 
 	public List<Event> findEvent() {
 		return eventRepository.findEvent();
@@ -24,8 +21,7 @@ public class EventUseCase {
 
 
 	public Event createEvent(Event event) {
-		//log.info("*******INIT CREATED EVENT ******");
-		
+
 		String type = event.getType();
 		switch (type) {
 		case "PushEvent":
@@ -36,8 +32,7 @@ public class EventUseCase {
 			return createEventThree(event);
 		default:
 		}
-		//throw new ValidType("Type user not Valid");
-		return event;
+		throw new ValidType("Type user not Valid");
 
 	} 
 
@@ -67,7 +62,7 @@ public class EventUseCase {
 
 	}
 
-	
+
 	public Event createEventOne (Event event) {
 		return eventRepository.createEvent(event);
 	}
@@ -82,80 +77,20 @@ public class EventUseCase {
 
 
 	public List<Event> findEventbyRepoId(Integer id) {
-		
-		 List<Event> listEvent = eventRepository.findEventbyRepoId(id);
-		 
-		 final List<Event> filtroEventByRepo =
-				     listEvent.stream()
-			         .filter(repo -> repo.getRepoId().equals(id))
-			         .collect(Collectors.toList());
-		 
-		 for (Event event : filtroEventByRepo) {
-				if (event.getRepoId().equals(id)) {
-					return filtroEventByRepo;
-
-				} 
-		
-	}
-		return filtroEventByRepo;
-
+		return eventRepository.findEventbyRepoId(id);
 	}
 
-	
+
 	public List<Event> findEventbyUserId(Integer id) {
-		
-		 List<Event> listEvent = eventRepository.findEventbyUserId(id);
-		 
-		 final List<Event> filtroEventByUser =
-				     listEvent.stream()
-			         .filter(user -> user.getActorId().equals(id))
-			         .collect(Collectors.toList());
-		 
-		 for (Event event : filtroEventByUser) {
-				if (event.getActorId().equals(id)) {
-					return filtroEventByUser;
-
-				} 
-		
+		return eventRepository.findEventbyUserId(id);
 	}
-		return filtroEventByUser;
 
-	}
-	
 	public List<Event> getConsultByisPublicEvent (Boolean ispublic) {
 		return eventRepository.findEventByisPublic(ispublic);
-	}
-	
-	
-	
-	 public void deleteEvent (Integer id){
-	        try{
-	        	eventRepository.deleteById(id);
-	        }catch(Exception err){
-	        	
-	        }
-	        
-	    }
-
-	 
-	public Event updateEvent (Integer id, Event event) throws Exception {
-		
-		Event eventInfo = eventRepository.findEventById(id);
-	
-        if (eventInfo == null) {
-            throw new Exception();
-        }
-        eventInfo.setType(event.getType());
-        eventInfo.setIsPublic(event.getIsPublic());
-        eventInfo.setActorId(event.getActorId());
-        eventInfo.setRepoId(event.getRepoId());
-        
-        eventRepository.createEvent(eventInfo);
-        return eventInfo;
 	}
 
 	public Optional<Event> getConsulEventById(Integer id) {	
 		return eventRepository.findById(id); 
 	}
-	
+
 }
